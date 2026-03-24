@@ -42,12 +42,10 @@
     <div class="hero-pattern"></div>
     <div class="hero-img"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">AI-Powered Travel Planning</div>
       <h1>Discover Your Next <em>Adventure</em></h1>
-      <p>Plan, book, and manage your dream journeys with intelligent tools, real-time pricing, and group coordination — all in one place.</p>
+      <p>Plan, book, and manage your dream journeys with real-time pricing, group coordination, and personalized travel tools — all in one place.</p>
       <div class="hero-cta">
         <button class="btn btn-white" onclick="navigate('packages')">Explore Packages</button>
-        <button class="btn btn-ghost" onclick="openAI()">Ask AI Assistant</button>
       </div>
     </div>
     <div class="hero-stats">
@@ -58,7 +56,7 @@
     <div class="search-bar">
       <div class="search-field">
         <label for="searchDest">Destination</label>
-        <input type="text" id="searchDest" placeholder="Where do you want to go?" />
+        <input type="text" id="searchDest" placeholder="Maldives" />
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
@@ -128,6 +126,13 @@
         </div>
         <h4>Corporate Tools</h4>
         <p>Approval workflows, invoices, and employee booking management</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h4>24/7 Support</h4>
+        <p>Dedicated customer service with multi-language support worldwide</p>
       </div>
     </div>
   </section>
@@ -441,26 +446,136 @@
 ════════════════════════════════════════ -->
 <div class="page" id="page-login">
   <div class="login-page">
-    <div class="login-card">
-      <div class="login-logo" onclick="navigate('home')">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-logo" onclick="navigate('home')">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+          </div>
+          <span class="logo-text">Travel<span>Booker</span></span>
         </div>
-        <span class="logo-text">Travel<span>Booker</span></span>
+
+        <!-- Tab Navigation -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+          <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="loginForm" class="auth-form active">
+          <h2>Welcome Back</h2>
+          <p>Access your account to manage bookings and more</p>
+
+          <!-- Social Login -->
+          <div class="social-login">
+            <button class="btn btn-social btn-google" onclick="socialLogin('google')">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Continue with Google
+            </button>
+            <button class="btn btn-social btn-apple" onclick="socialLogin('apple')">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+              </svg>
+              Continue with Apple
+            </button>
+          </div>
+
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+          <form onsubmit="doLogin(event)">
+            <div class="form-field">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" required>
+            </div>
+            <div class="form-field">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" required>
+            </div>
+            <div class="form-field" style="margin-bottom:24px;">
+              <label for="loginRole">Sign in as</label>
+              <select id="loginRole">
+                <option value="customer">Direct Customer</option>
+                <option value="agent">Travel Agent</option>
+                <option value="corporate">Corporate Partner</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+          </form>
+
+          <div class="login-note">Prototype mode: use any email/password</div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupForm" class="auth-form">
+          <h2>Join TravelBooker</h2>
+          <p>Create your account to start booking amazing experiences</p>
+
+          <!-- Social Signup -->
+          <div class="social-login">
+            <button class="btn btn-social btn-google" onclick="socialLogin('google')">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Sign up with Google
+            </button>
+            <button class="btn btn-social btn-apple" onclick="socialLogin('apple')">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+              </svg>
+              Sign up with Apple
+            </button>
+          </div>
+
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+          <form onsubmit="doSignup(event)">
+            <div class="form-field">
+              <label for="signupFirstName">First Name</label>
+              <input type="text" id="signupFirstName" required>
+            </div>
+            <div class="form-field">
+              <label for="signupLastName">Last Name</label>
+              <input type="text" id="signupLastName" required>
+            </div>
+            <div class="form-field">
+              <label for="signupEmail">Email</label>
+              <input type="email" id="signupEmail" required>
+            </div>
+            <div class="form-field">
+              <label for="signupPassword">Password</label>
+              <input type="password" id="signupPassword" required minlength="8">
+            </div>
+            <div class="form-field">
+              <label for="signupConfirmPassword">Confirm Password</label>
+              <input type="password" id="signupConfirmPassword" required minlength="8">
+            </div>
+            <div class="form-field" style="margin-bottom:24px;">
+              <label for="signupRole">Account Type</label>
+              <select id="signupRole">
+                <option value="customer">Direct Customer</option>
+                <option value="agent">Travel Agent</option>
+                <option value="corporate">Corporate Partner</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary signup-btn">Create Account</button>
+          </form>
+
+          <div class="login-note">By signing up, you agree to our Terms & Privacy Policy</div>
+        </div>
       </div>
-      <h2>Welcome Back</h2>
-      <p>Access your account to manage bookings and more</p>
-      <div class="form-field" style="margin-bottom:24px;">
-        <label for="loginRole">Sign in as</label>
-        <select id="loginRole">
-          <option value="customer">Direct Customer</option>
-          <option value="agent">Travel Agent</option>
-          <option value="corporate">Corporate Partner</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button class="btn btn-primary login-btn" onclick="doLogin()">Sign In</button>
-      <div class="login-note">Prototype mode: no credentials required</div>
     </div>
   </div>
 </div>
@@ -505,7 +620,7 @@
         <h3>7. Security</h3>
         <p>We implement industry-standard security measures including SSL encryption, secure data storage, and regular security audits to protect your information.</p>
         <h3>8. Contact Us</h3>
-        <p>For privacy-related questions, contact: privacy@travelbooker.com or write to TravelBooker, 45 Green Lane, London, EC2A 4NE, United Kingdom.</p>
+        <p>For privacy-related questions, contact: privacy@travelbooker.com or write to TravelBooker, 45 Glenn Aber Street, Colombo, Sri Lanka.</p>
       </div>
     </div>
     <div id="legal-terms" class="legal-section" style="display:none;">
@@ -525,7 +640,7 @@
         <h3>6. Limitation of Liability</h3>
         <p>TravelBooker acts as an agent for travel providers. Our maximum liability to you in any circumstance shall not exceed the total amount paid for the relevant booking.</p>
         <h3>7. Governing Law</h3>
-        <p>These Terms are governed by the laws of England and Wales. Disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+        <p>These Terms are governed by the laws of Sri Lanka. Disputes shall be subject to the exclusive jurisdiction of the courts of Sri Lanka.</p>
       </div>
     </div>
     <div id="legal-cookies" class="legal-section" style="display:none;">
@@ -551,18 +666,125 @@
 </div>
 
 <!-- ════════════════════════════════════════
-     PAGE: INFO PAGES (About, Careers, etc.)
+     PAGE: INDIVIDUAL TRAVELER
+════════════════════════════════════════ -->
+<div class="page" id="page-individual">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-inner">
+      <button class="back-btn light" onclick="navigate('home')">Back to Home</button>
+      <div>
+        <h2>Individual Traveler</h2>
+        <p>Personalized travel experiences for solo adventurers</p>
+      </div>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="packages-grid" id="individualGrid"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: FAMILY TRAVELER
+════════════════════════════════════════ -->
+<div class="page" id="page-family">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-inner">
+      <button class="back-btn light" onclick="navigate('home')">Back to Home</button>
+      <div>
+        <h2>Family Traveler</h2>
+        <p>Family-friendly packages with child options and Sri Lanka specials</p>
+      </div>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="packages-grid" id="familyGrid"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: GROUP TRAVELER
+════════════════════════════════════════ -->
+<div class="page" id="page-group">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-inner">
+      <button class="back-btn light" onclick="navigate('home')">Back to Home</button>
+      <div>
+        <h2>Group Traveler</h2>
+        <p>Large group coordination with shared dashboards and split payments</p>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <div class="eyebrow">Group Features</div>
+      <h2>Advanced Group Coordination</h2>
+      <p>Powerful tools for managing large groups with ease</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <h4>Group Access & Tracking</h4>
+        <p>All group members can view bookings and track progress in real-time</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        </div>
+        <h4>Trip Coordinator Dashboard</h4>
+        <p>One person manages the entire booking while others monitor updates</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        </div>
+        <h4>Group Discounts & Packages</h4>
+        <p>Special group rates and coordinated booking options</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </div>
+        <h4>Split Payment Tools</h4>
+        <p>Easy cost-sharing and secure group payment methods</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 4h-4V3a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v1H1a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM2 6h16v14H2V6zm8 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+        </div>
+        <h4>Flexible Policies</h4>
+        <p>Easy rescheduling and modification options for groups</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+        </div>
+        <h4>Interactive Comparison Charts</h4>
+        <p>Visual tools for the entire group to compare options</p>
+      </div>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="packages-grid" id="groupGrid"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: INFO (About, Careers, Contact, etc.)
 ════════════════════════════════════════ -->
 <div class="page" id="page-info">
-  <div class="info-page-wrap" id="infoContent"></div>
+  <div class="info-page-wrap">
+    <div id="infoContent"></div>
+  </div>
 </div>
 
 <!-- ════════════════════════════════════════
      AI CHAT WIDGET
 ════════════════════════════════════════ -->
-<button class="ai-fab" onclick="toggleAI()" title="AI Travel Assistant" aria-label="Open AI Travel Assistant">
+<div class="ai-fab" id="aiFab" onclick="toggleAI()" title="AI Travel Assistant" aria-label="Open AI Travel Assistant">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-</button>
+</div>
 <div class="ai-chat-panel" id="aiPanel">
   <div class="ai-chat-header">
     <div class="ai-avatar">AI</div>

@@ -128,7 +128,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 /* ── HERO ── */
 .hero {
   min-height: 100vh; position: relative; display: flex; align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -166,7 +166,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero-stats {
-  position: absolute; bottom: 72px; right: 80px; z-index: 2;
+  position: absolute; bottom: 140px; right: 80px; z-index: 2;
   display: flex; gap: 40px;
 }
 .hero-stat { text-align: center; }
@@ -175,7 +175,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 /* ── SEARCH BAR ── */
 .search-bar {
-  position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
   z-index: 10; width: min(920px, calc(100% - 80px));
   background: white; border-radius: var(--radius-lg); padding: 22px 28px;
   box-shadow: var(--shadow-lg); display: flex; gap: 16px; align-items: flex-end;
@@ -193,7 +193,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 .search-field input:focus, .search-field select:focus { border-color: var(--green); }
 .search-divider { width: 1px; height: 46px; background: var(--gray-200); align-self: flex-end; flex-shrink: 0; }
-.hero-spacer { height: 56px; background: var(--off-white); }
+.hero-spacer { height: 20px; background: var(--off-white); }
 
 /* ── SECTION ── */
 .section { padding: 80px 60px; }
@@ -255,6 +255,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .pkg-desc { font-size: .84rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 16px; }
 .pkg-footer { display: flex; align-items: center; justify-content: space-between; }
 .pkg-price .amount { font-size: 1.35rem; font-weight: 700; color: var(--green); }
+.pkg-price .amount.discounted { text-decoration: line-through; color: var(--gray-400); font-size: 1.1rem; margin-right: 8px; }
 .pkg-price .per { font-size: .73rem; color: var(--gray-400); margin-top: 1px; }
 .pkg-rating { display: flex; align-items: center; gap: 5px; font-size: .82rem; font-weight: 600; }
 .stars { color: #f59e0b; }
@@ -504,10 +505,14 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .login-page {
   flex: 1; display: flex; align-items: center; justify-content: center;
   padding: 40px 20px; padding-top: calc(var(--nav-h) + 40px);
+  background: linear-gradient(135deg, var(--green-wash) 0%, var(--off-white) 100%);
+}
+.login-container {
+  width: 100%; max-width: 480px;
 }
 .login-card {
   background: white; border-radius: var(--radius-lg); padding: 52px 48px;
-  width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); text-align: center;
+  width: 100%; box-shadow: var(--shadow-lg); text-align: center;
 }
 .login-logo {
   display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -515,8 +520,69 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 .login-card h2 { font-size: 1.9rem; color: var(--green-dark); margin-bottom: 8px; }
 .login-card > p { color: var(--gray-400); font-size: .9rem; margin-bottom: 32px; }
-.login-btn { width: 100%; justify-content: center; padding: 14px 24px; font-size: .95rem; }
-.login-note { margin-top: 18px; font-size: .78rem; color: var(--gray-400); }
+
+/* Auth Tabs */
+.auth-tabs {
+  display: flex; margin-bottom: 32px; border-radius: 50px;
+  background: var(--gray-100); padding: 4px; gap: 4px;
+}
+.auth-tab {
+  flex: 1; padding: 12px 24px; border: none; background: transparent;
+  border-radius: 50px; font-weight: 600; color: var(--gray-600);
+  cursor: pointer; transition: var(--transition);
+}
+.auth-tab.active { background: white; color: var(--green-dark); box-shadow: var(--shadow-sm); }
+
+/* Auth Forms */
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+
+/* Social Login */
+.social-login { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.btn-social {
+  width: 100%; justify-content: center; padding: 14px 24px; font-size: .9rem;
+  border: 1px solid var(--gray-200); background: white; color: var(--gray-800);
+  display: flex; align-items: center; gap: 12px; font-weight: 500;
+}
+.btn-social:hover { background: var(--gray-50); border-color: var(--gray-300); }
+.btn-google:hover { background: #f8f9fa; }
+.btn-apple { color: black; }
+
+/* Divider */
+.divider {
+  position: relative; text-align: center; margin: 24px 0;
+  color: var(--gray-400); font-size: .8rem;
+}
+.divider::before {
+  content: ''; position: absolute; top: 50%; left: 0; right: 0;
+  height: 1px; background: var(--gray-200);
+}
+.divider span {
+  background: white; padding: 0 16px; position: relative; z-index: 1;
+}
+
+/* Form Styles */
+.form-field { text-align: left; margin-bottom: 20px; }
+.form-field label {
+  display: block; font-size: .8rem; font-weight: 600; color: var(--gray-700);
+  margin-bottom: 6px; letter-spacing: .02em;
+}
+.form-field input, .form-field select {
+  width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200);
+  border-radius: 8px; font-size: .9rem; transition: var(--transition);
+}
+.form-field input:focus, .form-field select:focus {
+  outline: none; border-color: var(--green); box-shadow: 0 0 0 3px var(--green-pale);
+}
+
+.login-btn, .signup-btn {
+  width: 100%; justify-content: center; padding: 14px 24px; font-size: .95rem;
+  margin-top: 8px;
+}
+.login-note {
+  margin-top: 18px; font-size: .78rem; color: var(--gray-400);
+  line-height: 1.4;
+}
 
 /* ── DASHBOARD ── */
 #page-dashboard { padding-top: var(--nav-h); }
@@ -783,7 +849,8 @@ footer {
   #navbar { padding: 0 24px; }
   .hero-content { padding: 120px 30px 100px; }
   .hero-stats { display: none; }
-  .search-bar { flex-direction: column; width: calc(100% - 40px); position: static; transform: none; margin-top: -20px; border-radius: var(--radius); }
+  .search-bar { flex-direction: column; width: calc(100% - 40px); position: static; transform: none; margin-top: -20px; border-radius: var(--radius); gap: 20px; padding: 20px; }
+  .search-field input, .search-field select { font-size: .9rem; }
   .hero-spacer { height: 0; }
   .search-divider { display: none; }
   .section { padding: 60px 24px; }

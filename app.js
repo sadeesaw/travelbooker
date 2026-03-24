@@ -20,6 +20,7 @@ const PACKAGES = [
     reviews: 312,
     img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
     badge: 'Best Seller',
+    discount: { percentage: 15, validUntil: '2024-12-31', description: 'Early Bird Special' },
     desc: 'Immerse yourself in the spiritual heart of Bali with temple visits, rice terrace walks, and world-class spa experiences among the emerald green hillsides of Ubud and beyond.',
     includes: [
       '5-star resort accommodation', 'All meals included', 'Airport transfers',
@@ -39,7 +40,8 @@ const PACKAGES = [
     reviewsList: [
       { author: 'Sarah M.', rating: 5, date: 'November 2024', text: 'Absolutely magical. The sunrise hike to Mount Batur was the highlight of our entire trip. The guide was knowledgeable and the resort exceeded expectations.' },
       { author: 'James K.', rating: 5, date: 'October 2024', text: 'Perfect blend of culture, nature, and relaxation. The cooking class was incredibly fun and we learnt so much. Highly recommended for couples.' },
-      { author: 'Priya N.', rating: 4, date: 'September 2024', text: 'The spa day and temple tours were exceptional. The cooking class was so much fun. Staff were incredibly warm and helpful throughout.' }
+      { author: 'Priya N.', rating: 4, date: 'September 2024', text: 'The spa day and temple tours were exceptional. The cooking class was so much fun. Staff were incredibly warm and helpful throughout.' },
+      { author: 'Chaminda Fernando', rating: 5, date: 'August 2024', text: 'As a Sri Lankan, I was impressed by how well the local culture was presented to tourists. The traditional dance performance was authentic and beautiful.' }
     ]
   },
   {
@@ -69,7 +71,8 @@ const PACKAGES = [
     ],
     reviewsList: [
       { author: 'Clara B.', rating: 5, date: 'September 2024', text: 'The private boat trip was absolutely stunning. We anchored in secret coves and swam in crystal clear water. 10 out of 10 experience.' },
-      { author: 'Michael T.', rating: 4, date: 'August 2024', text: 'Beautiful scenery, world-class food. The Pompeii guide was exceptional. A little pricey but genuinely worth every penny.' }
+      { author: 'Michael T.', rating: 4, date: 'August 2024', text: 'Beautiful scenery, world-class food. The Pompeii guide was exceptional. A little pricey but genuinely worth every penny.' },
+      { author: 'Nimali Perera', rating: 5, date: 'July 2024', text: 'The Amalfi Coast reminded me of the beauty of Sri Lanka\'s southern beaches. The limoncello tasting was a highlight!' }
     ]
   },
   {
@@ -83,6 +86,7 @@ const PACKAGES = [
     reviews: 87,
     img: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=900&q=80',
     badge: 'Premium',
+    discount: { percentage: 20, validUntil: '2024-11-30', description: 'Safari Season Deal' },
     desc: 'Witness the Great Migration and encounter the Big Five in the vast wilderness of the Serengeti. A once-in-a-lifetime luxury tented safari with expert naturalist guides.',
     includes: [
       'Luxury tented lodge accommodation', 'All meals and beverages', 'Twice-daily game drives',
@@ -99,7 +103,8 @@ const PACKAGES = [
     ],
     reviewsList: [
       { author: 'David L.', rating: 5, date: 'October 2024', text: 'The balloon safari over the Serengeti at sunrise was beyond description. We watched a lion pride on a kill from 100 metres up. Extraordinary.' },
-      { author: 'Amara O.', rating: 5, date: 'July 2024', text: 'The very best trip of my life. Our guide had an encyclopaedic knowledge of wildlife behaviour. Every day brought something utterly unforgettable.' }
+      { author: 'Amara O.', rating: 5, date: 'July 2024', text: 'The very best trip of my life. Our guide had an encyclopaedic knowledge of wildlife behaviour. Every day brought something utterly unforgettable.' },
+      { author: 'Roshan de Silva', rating: 5, date: 'June 2024', text: 'Coming from Sri Lanka, I was amazed by the vastness of the Serengeti. The Maasai village visit was incredibly insightful.' }
     ]
   },
   {
@@ -142,6 +147,7 @@ const PACKAGES = [
     reviews: 76,
     img: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',
     badge: 'Adventure',
+    discount: { percentage: 10, validUntil: '2024-10-31', description: 'Adventure Savings' },
     desc: 'Trek through the most spectacular wilderness on Earth — glaciers, granite towers, turquoise lakes, and condors overhead in the raw heart of Chilean and Argentine Patagonia.',
     includes: [
       'Mountain lodge accommodation on trail', 'All meals during trek', 'Expert certified mountain guides',
@@ -244,6 +250,37 @@ const PACKAGES = [
       { author: 'Emma J.', rating: 5, date: 'February 2025', text: 'Milford Sound is genuinely one of the most otherworldly places on Earth. The South Island took our breath away every single day.' },
       { author: 'Raj P.', rating: 5, date: 'January 2025', text: 'The perfect self-drive itinerary — every stop was stunning. The Franz Josef Glacier heli-hike was utterly spectacular.' }
     ]
+  },
+  {
+    id: 9,
+    title: 'Sri Lanka Family Adventure',
+    region: 'Asia',
+    dest: 'Sri Lanka',
+    duration: 10,
+    price: 1850,
+    rating: 4.8,
+    reviews: 156,
+    img: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=900&q=80',
+    badge: 'Family Special',
+    desc: 'Explore ancient temples, wildlife safaris, and pristine beaches with family-friendly activities and child discounts.',
+    includes: [
+      'Family accommodation', 'Child-friendly activities', 'Yala National Park safari',
+      'Sigiriya rock fortress', 'Beach resorts', 'Cultural shows'
+    ],
+    highlights: ['Yala Wildlife Safari', 'Sigiriya Rock', 'Temple of the Tooth', 'Colombo City Tour'],
+    itinerary: [
+      { day: 'Day 1', title: 'Colombo Arrival', desc: 'Welcome to Sri Lanka, transfer to hotel with family rooms.' },
+      { day: 'Day 2-3', title: 'Cultural Triangle', desc: 'Visit ancient cities, Sigiriya Rock, and Polonnaruwa.' },
+      { day: 'Day 4-5', title: 'Yala Safari', desc: 'Wildlife safari in Yala National Park, spot elephants and leopards.' },
+      { day: 'Day 6-7', title: 'Hill Country', desc: 'Tea plantations, Nuwara Eliya, and Ella Gap.' },
+      { day: 'Day 8-9', title: 'Beach Relaxation', desc: 'Unawatuna or Mirissa beaches, whale watching optional.' },
+      { day: 'Day 10', title: 'Departure', desc: 'Transfer to Colombo airport.' }
+    ],
+    reviewsList: [
+      { author: 'Family Smith', rating: 5, date: 'March 2025', text: 'Perfect family trip! The kids loved the safari and beaches. Great value with child discounts.' },
+      { author: 'Nimali Fernando', rating: 5, date: 'February 2025', text: 'As a Sri Lankan mother, I was proud to show my children our beautiful country. The family packages are well-designed.' },
+      { author: 'Raj & Priya Patel', rating: 4, date: 'January 2025', text: 'Great family adventure! The child discounts made it affordable. Yala safari was the highlight for our kids.' }
+    ]
   }
 ];
 
@@ -257,9 +294,29 @@ let rooms       = [{ id: 1, people: 2 }];
 let bookingStep = 1;
 let aiOpen      = false;
 let bookingHistory = [
-  { ref: 'TB-2025-AB3F2', pkg: 'Enchanted Bali Retreat',       date: 'Jan 15, 2025', status: 'Completed', amount: 1290 },
-  { ref: 'TB-2025-X9KLM', pkg: 'Japan Cherry Blossom Trail',   date: 'Mar 20, 2025', status: 'Upcoming',  amount: 3600 },
-  { ref: 'TB-2025-QR7TY', pkg: 'Morocco Desert Expedition',    date: 'Feb 10, 2025', status: 'Cancelled', amount: 1480 }
+  { ref: 'TB-2025-AB3F2', pkg: 'Enchanted Bali Retreat',       date: 'Jan 15, 2025', status: 'Completed', amount: 1290, client: 'Sarah Anderson', location: 'New York, USA' },
+  { ref: 'TB-2025-X9KLM', pkg: 'Japan Cherry Blossom Trail',   date: 'Mar 20, 2025', status: 'Upcoming',  amount: 3600, client: 'TechCorp Solutions', location: 'San Francisco, USA' },
+  { ref: 'TB-2025-QR7TY', pkg: 'Morocco Desert Expedition',    date: 'Feb 10, 2025', status: 'Cancelled', amount: 1480, client: 'Mike Johnson', location: 'London, UK' },
+  { ref: 'TB-2025-MN8PL', pkg: 'Serengeti Safari Adventure',   date: 'Dec 5, 2024',  status: 'Completed', amount: 4200, client: 'Priya & Raj Patel', location: 'Mumbai, India' },
+  { ref: 'TB-2025-KL2WX', pkg: 'Amalfi Coast Odyssey',        date: 'Nov 18, 2024', status: 'Completed', amount: 2850, client: 'Carlos Mendes', location: 'São Paulo, Brazil' },
+  { ref: 'TB-2025-VB9NM', pkg: 'Sri Lanka Family Adventure',  date: 'Oct 22, 2024', status: 'Completed', amount: 1850, client: 'Nimali Fernando', location: 'Colombo, Sri Lanka' },
+  { ref: 'TB-2025-HJ4QR', pkg: 'Patagonia Wilderness Trek',   date: 'Sep 8, 2024',  status: 'Completed', amount: 3900, client: 'Lisa Thompson', location: 'Sydney, Australia' },
+  { ref: 'TB-2025-RT3YU', pkg: 'Maldives Overwater Paradise',  date: 'Aug 15, 2024', status: 'Completed', amount: 3200, client: 'Chaminda Perera', location: 'Colombo, Sri Lanka' },
+  { ref: 'TB-2025-WE8OP', pkg: 'New Zealand South Island',     date: 'Jul 3, 2024',  status: 'Completed', amount: 2800, client: 'Rashika de Silva', location: 'Kandy, Sri Lanka' },
+  { ref: 'TB-2025-ZX5CV', pkg: 'Iceland Northern Lights',     date: 'Jun 12, 2024', status: 'Completed', amount: 4100, client: 'Global Marketing Inc', location: 'Singapore' },
+  { ref: 'TB-2025-BN7MK', pkg: 'Vietnam Cultural Journey',    date: 'May 28, 2024', status: 'Completed', amount: 1950, client: 'Sunil Jayawardena', location: 'Colombo, Sri Lanka' },
+  { ref: 'TB-2025-PL9OI', pkg: 'Peru Inca Trail Trek',        date: 'Apr 10, 2024', status: 'Completed', amount: 2400, client: 'Nordic Enterprises', location: 'Stockholm, Sweden' }
+];
+
+const AGENT_CLIENTS = [
+  { id: 'sarah-anderson', name: 'Sarah Anderson', contact: 'sarah@email.com', phone: '+1 555-0123', type: 'Family', lastTrip: 'Bali Retreat', totalSpent: '$8,400', status: 'Active', details: '4 travellers; 30% repeat-booking rate' },
+  { id: 'techcorp-solutions', name: 'TechCorp Solutions', contact: 'travel@techcorp.com', phone: '+1 555-0456', type: 'Corporate', lastTrip: 'Japan Team Building', totalSpent: '$67,200', status: 'Active', details: '45 employees; 12 bookings this year' },
+  { id: 'mike-johnson', name: 'Mike Johnson', contact: 'mike@corp.com', phone: '+1 555-0789', type: 'Business', lastTrip: 'Serengeti Safari', totalSpent: '$24,100', status: 'Planning', details: 'Solo executive traveler; prefers premium packages' },
+  { id: 'priya-raj-patel', name: 'Priya & Raj Patel', contact: 'priya@biz.com', phone: '+1 555-0321', type: 'Family', lastTrip: 'Maldives Resort', totalSpent: '$12,800', status: 'Active', details: 'Couple+2 children; high interest in Asian family adds' },
+  { id: 'global-marketing', name: 'Global Marketing Inc', contact: 'hr@globalmkt.com', phone: '+1 555-0654', type: 'Corporate', lastTrip: 'Amalfi Team Event', totalSpent: '$42,600', status: 'Inactive', details: '28 employees; require quarterly trips' },
+  { id: 'carlos-mendes', name: 'Carlos Mendes', contact: 'carlos@travel.co', phone: '+1 555-0987', type: 'Individual', lastTrip: 'Patagonia Trek', totalSpent: '$14,600', status: 'Active', details: 'Adventure travel specialist client' },
+  { id: 'nordic-enterprises', name: 'Nordic Enterprises', contact: 'travel@nordic.com', phone: '+1 555-0432', type: 'Corporate', lastTrip: 'Multiple destinations', totalSpent: '$89,400', status: 'Active', details: '67 employees; strategic partner' },
+  { id: 'lisa-thompson', name: 'Lisa Thompson', contact: 'lisa@consulting.net', phone: '+1 555-0765', type: 'Business', lastTrip: 'London Conference', totalSpent: '$6,200', status: 'Planning', details: 'Frequent high-value client' }
 ];
 
 // ════════════════════════════════════════════════
@@ -303,12 +360,28 @@ function navigate(pageId) {
     });
   }
 
+  // Update browser history
+  const url = pageId === 'home' ? '/' : '/' + pageId;
+  if (window.location.pathname !== url) {
+    history.pushState({ page: pageId }, '', url);
+  }
+
   // Page-specific init
   if (targetId === 'packages')  renderPackages(PACKAGES);
   if (targetId === 'home')      renderFeatured();
   if (targetId === 'dashboard') renderDashboard();
   if (targetId === 'booking')   initBooking();
+  if (targetId === 'individual') renderIndividualPackages();
+  if (targetId === 'family')    renderFamilyPackages();
+  if (targetId === 'group')     renderGroupPackages();
 }
+
+// Handle browser back/forward
+window.addEventListener('popstate', function(event) {
+  if (event.state && event.state.page) {
+    navigate(event.state.page);
+  }
+});
 
 // ════════════════════════════════════════════════
 // LEGAL PAGE TABS
@@ -367,8 +440,7 @@ function renderAbout() {
     </div>
     <div class="info-section">
       <h3>Our Story</h3>
-      <p>TravelBooker was founded in 2018 by a group of passionate travellers who were frustrated with the fragmented, impersonal experience of booking travel online. We believed that planning a journey should be as exciting as the journey itself.</p>
-      <p>Starting with a small team of 12 in London, we have grown to serve over 98,000 travellers across 180 destinations worldwide. Our AI-powered platform combines the warmth of a personal travel agent with the scale and convenience of modern technology.</p>
+      <p>TravelBooker was founded in 2026 by a group of passionate travelers who are also university students. We were frustrated with the fragmented and impersonal experience of booking travel online. We believe that planning a journey should be as exciting as the journey itself. Starting with a small team of five in Sri Lanka, we have grown to serve over 98,000 travelers across 180 destinations worldwide. Our AI-powered platform combines the warmth of a personal travel agent with the scale and convenience of modern technology.</p>
     </div>
     <div class="info-section">
       <h3>Our Values</h3>
@@ -382,7 +454,7 @@ function renderAbout() {
     <div class="info-section">
       <h3>By the Numbers</h3>
       <div class="info-grid">
-        <div class="info-card"><h4>98,000+</h4><p>Happy travellers who have booked through TravelBooker since 2018</p></div>
+        <div class="info-card"><h4>98,000+</h4><p>Happy travellers who have booked through TravelBooker since 2026</p></div>
         <div class="info-card"><h4>180+</h4><p>Destinations across every continent, curated by our expert team</p></div>
         <div class="info-card"><h4>4,200+</h4><p>Unique tour packages, regularly refreshed and quality-checked</p></div>
         <div class="info-card"><h4>4.8 / 5</h4><p>Average customer satisfaction rating across all completed bookings</p></div>
@@ -428,10 +500,10 @@ function renderContact() {
     <div class="info-section">
       <h3>Get in Touch</h3>
       <div class="contact-grid">
-        <div class="contact-card"><div class="cc-icon">&#9990;</div><h4>Phone</h4><p>+44 20 7946 0320<br/>Mon–Fri, 9am–8pm GMT</p></div>
+        <div class="contact-card"><div class="cc-icon">&#9990;</div><h4>Phone</h4><p>+94 11 234 5678<br/>Mon–Fri, 9am–8pm SLST</p></div>
         <div class="contact-card"><div class="cc-icon">&#9993;</div><h4>Email</h4><p>hello@travelbooker.com<br/>Response within 4 hours</p></div>
         <div class="contact-card"><div class="cc-icon">&#9997;</div><h4>Live Chat</h4><p>Available 24/7<br/>Average wait: 2 minutes</p></div>
-        <div class="contact-card"><div class="cc-icon">&#9968;</div><h4>Head Office</h4><p>45 Green Lane, EC2A 4NE<br/>London, United Kingdom</p></div>
+        <div class="contact-card"><div class="cc-icon">&#9968;</div><h4>Head Office</h4><p>123 Galle Road, Colombo 3<br/>Sri Lanka</p></div>
       </div>
     </div>
     <div class="info-section">
@@ -640,7 +712,7 @@ function renderGuides() {
 // ════════════════════════════════════════════════
 function renderFeatured() {
   const grid = document.getElementById('featuredGrid');
-  if (grid) grid.innerHTML = PACKAGES.slice(0, 6).map(pkgCard).join('');
+  if (grid) grid.innerHTML = PACKAGES.slice(0, 8).map(pkg => pkgCard(pkg)).join('');
 }
 
 function renderPackages(list) {
@@ -656,18 +728,75 @@ function renderPackages(list) {
           <p>No packages match your current filters. Try adjusting your search.</p>
         </div>`;
     } else {
-      grid.innerHTML = list.map(pkgCard).join('');
+      grid.innerHTML = list.map(pkg => pkgCard(pkg)).join('');
     }
   }
   if (cnt) cnt.textContent = list.length;
 }
 
-function pkgCard(pkg) {
+function renderIndividualPackages(dest) {
+  let list = PACKAGES.filter(p => p.duration <= 10); // Shorter trips for individuals
+  if (dest) {
+    list = list.filter(p =>
+      p.dest.toLowerCase().includes(dest) ||
+      p.region.toLowerCase().includes(dest) ||
+      p.title.toLowerCase().includes(dest)
+    );
+  }
+  const grid = document.getElementById('individualGrid');
+  if (grid) grid.innerHTML = list.map(pkgCard).join('');
+}
+
+function renderFamilyPackages(dest) {
+  let list = PACKAGES.filter(p => p.duration <= 14); // Family-friendly durations
+  if (dest) {
+    list = list.filter(p =>
+      p.dest.toLowerCase().includes(dest) ||
+      p.region.toLowerCase().includes(dest) ||
+      p.title.toLowerCase().includes(dest)
+    );
+  }
+  // Mark packages as family-friendly
+  list = list.map(pkg => ({ ...pkg, familyFriendly: true, childDiscount: '20% off for children under 12' }));
+  const grid = document.getElementById('familyGrid');
+  if (grid) grid.innerHTML = list.map(pkg => pkgCard(pkg, true)).join(''); // Pass true for family mode
+}
+
+function renderGroupPackages(dest) {
+  let list = PACKAGES.filter(p => p.price <= 3000); // More affordable for groups
+  if (dest) {
+    list = list.filter(p =>
+      p.dest.toLowerCase().includes(dest) ||
+      p.region.toLowerCase().includes(dest) ||
+      p.title.toLowerCase().includes(dest)
+    );
+  }
+  const grid = document.getElementById('groupGrid');
+  if (grid) grid.innerHTML = list.map(pkgCard).join('');
+}
+
+function pkgCard(pkg, familyMode = false) {
+  const childInfo = familyMode && pkg.childDiscount ? `<div style="font-size:.8rem;color:var(--green);margin-top:4px">👶 ${pkg.childDiscount}</div>` : '';
+
+  // Calculate discount display
+  let discountBadge = '';
+  let priceDisplay = `<span class="amount">$${pkg.price.toLocaleString()}</span>`;
+  if (pkg.discount) {
+    const discountPrice = pkg.price * (1 - pkg.discount.percentage / 100);
+    discountBadge = `<div class="pkg-badge" style="top:8px;left:8px"><span class="badge badge-red">-${pkg.discount.percentage}% ${pkg.discount.description}</span></div>`;
+    priceDisplay = `
+      <span class="amount discounted">$${pkg.price.toLocaleString()}</span>
+      <span class="amount">$${Math.round(discountPrice).toLocaleString()}</span>
+    `;
+  }
+
   return `
     <div class="pkg-card" onclick="openPackage(${pkg.id})" role="button" tabindex="0" aria-label="View ${pkg.title}">
       <div class="pkg-img">
         <img src="${pkg.img}" alt="${pkg.title}" loading="lazy" />
         <div class="pkg-badge"><span class="badge">${pkg.badge}</span></div>
+        ${discountBadge}
+        ${familyMode ? '<div class="pkg-badge" style="top:8px;right:8px"><span class="badge badge-green">👨‍👩‍👧‍👦 Family</span></div>' : ''}
         <button class="pkg-fav" onclick="event.stopPropagation();showToast('Added to wishlist')" aria-label="Add to wishlist">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </button>
@@ -685,9 +814,10 @@ function pkgCard(pkg) {
         </div>
         <div class="pkg-title">${pkg.title}</div>
         <div class="pkg-desc">${pkg.desc.substring(0, 92)}...</div>
+        ${childInfo}
         <div class="pkg-footer">
           <div class="pkg-price">
-            <span class="amount">$${pkg.price.toLocaleString()}</span>
+            ${priceDisplay}
             <div class="per">per person</div>
           </div>
           <div class="pkg-rating">
@@ -750,14 +880,33 @@ function openPackage(id) {
     <div class="alert alert-success">Group discount: 10% off for 10 or more travelers; 15% for 20 or more travelers.</div>
     <div class="alert alert-info">Flights, travel insurance, and visa fees are not included in the package price.</div>`;
 
-  document.getElementById('tab-reviews').innerHTML = pkg.reviewsList.map(r => `
-    <div class="review-item">
-      <div class="review-header">
-        <span class="review-author">${r.author}</span>
-        <div><span class="stars">${'&#9733;'.repeat(r.rating)}</span> <span style="font-size:.78rem;color:var(--gray-400)">${r.date}</span></div>
+  document.getElementById('tab-reviews').innerHTML = `
+    <div style="margin-bottom:24px">
+      <h4 style="margin-bottom:16px">Write a Review</h4>
+      <div class="form-grid" style="max-width:500px">
+        <div class="form-field"><label>Your Name</label><input type="text" id="reviewName" placeholder="John Doe" /></div>
+        <div class="form-field"><label>Rating</label>
+          <select id="reviewRating">
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+        <div class="form-field full"><label>Your Review</label><textarea id="reviewText" rows="3" placeholder="Share your experience..."></textarea></div>
       </div>
-      <div class="review-text">${r.text}</div>
-    </div>`).join('');
+      <button class="btn btn-primary" onclick="submitReview(${pkg.id})" style="margin-top:12px">Submit Review</button>
+    </div>
+    <h4>Customer Reviews</h4>
+    ${pkg.reviewsList.map(r => `
+      <div class="review-item">
+        <div class="review-header">
+          <span class="review-author">${r.author}</span>
+          <div><span class="stars">${'&#9733;'.repeat(r.rating)}</span> <span style="font-size:.78rem;color:var(--gray-400)">${r.date}</span></div>
+        </div>
+        <div class="review-text">${r.text}</div>
+      </div>`).join('')}`;
 
   // Booking card
   document.getElementById('detailBookingCard').innerHTML = `
@@ -833,14 +982,18 @@ function filterByDest(keyword) {
 
 function doSearch() {
   const dest = (document.getElementById('searchDest').value || '').toLowerCase().trim();
-  navigate('packages');
-  if (dest) {
-    const list = PACKAGES.filter(p =>
-      p.dest.toLowerCase().includes(dest) ||
-      p.region.toLowerCase().includes(dest) ||
-      p.title.toLowerCase().includes(dest)
-    );
-    renderPackages(list.length ? list : PACKAGES);
+  const travelers = parseInt(document.getElementById('searchNum').value) || 1;
+
+  // Redirect based on traveler count
+  if (travelers === 1) {
+    navigate('individual');
+    renderIndividualPackages(dest);
+  } else if (travelers >= 2 && travelers <= 10) {
+    navigate('family');
+    renderFamilyPackages(dest);
+  } else {
+    navigate('group');
+    renderGroupPackages(dest);
   }
 }
 
@@ -869,6 +1022,7 @@ function renderBookingSteps() {
 }
 
 function nextBookingStep(n) {
+  if (n === 2 && !validateBookingStep1()) return;
   bookingStep = n;
   renderBookingSteps();
   if (n === 3) updatePaymentSummary();
@@ -921,17 +1075,33 @@ function removeRoom(idx) {
   }
 }
 
-function updatePaymentSummary() {
-  if (!currentPkg) return;
-  const t   = parseInt(document.getElementById('bkgTravelers')?.value || 2);
-  const sub = currentPkg.price * t;
-  const tax = Math.round(sub * 0.12);
-  const tot = sub + tax;
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  set('payTravelers', t);
-  set('paySubtotal', '$' + sub.toLocaleString());
-  set('payTax', '$' + tax.toLocaleString());
-  set('payTotal', '$' + tot.toLocaleString());
+function validateBookingStep1() {
+  const travelers = parseInt(document.getElementById('bkgTravelers').value) || 0;
+  const checkin = document.getElementById('bkgCheckin').value;
+  const checkout = document.getElementById('bkgCheckout').value;
+  const groupType = document.getElementById('bkgGroupType').value;
+
+  if (travelers < 1) {
+    showToast('Please enter the number of travelers');
+    return false;
+  }
+  if (!checkin) {
+    showToast('Please select a check-in date');
+    return false;
+  }
+  if (!checkout) {
+    showToast('Please select a check-out date');
+    return false;
+  }
+  if (new Date(checkin) >= new Date(checkout)) {
+    showToast('Check-out date must be after check-in date');
+    return false;
+  }
+  if (groupType === 'Travel Agent Bulk' && travelers < 10) {
+    showToast('Bulk bookings require at least 10 travelers');
+    return false;
+  }
+  return true;
 }
 
 function confirmBooking() {
@@ -950,11 +1120,50 @@ function confirmBooking() {
 // ════════════════════════════════════════════════
 // LOGIN
 // ════════════════════════════════════════════════
-function doLogin() {
+function doLogin(event) {
+  if (event) event.preventDefault();
   const role = document.getElementById('loginRole').value;
   currentRole = role;
   navigate('dashboard');
   showToast('Signed in as ' + role.charAt(0).toUpperCase() + role.slice(1));
+  updateAIVisibility();
+}
+
+function doSignup(event) {
+  event.preventDefault();
+  const password = document.getElementById('signupPassword').value;
+  const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+  if (password !== confirmPassword) {
+    showToast('Passwords do not match', 'error');
+    return;
+  }
+
+  const role = document.getElementById('signupRole').value;
+  currentRole = role;
+  navigate('dashboard');
+  showToast('Account created successfully! Signed in as ' + role.charAt(0).toUpperCase() + role.slice(1));
+  updateAIVisibility();
+}
+
+function switchAuthTab(tab) {
+  // Update tab buttons
+  document.querySelectorAll('.auth-tab').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`[onclick="switchAuthTab('${tab}')"]`).classList.add('active');
+
+  // Update forms
+  document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+  document.getElementById(tab + 'Form').classList.add('active');
+}
+
+function socialLogin(provider) {
+  showToast(`Signing in with ${provider.charAt(0).toUpperCase() + provider.slice(1)}...`);
+  setTimeout(() => {
+    currentRole = 'customer'; // Default to customer for social login
+    navigate('dashboard');
+    showToast(`Successfully signed in with ${provider.charAt(0).toUpperCase() + provider.slice(1)}`);
+    updateAIVisibility();
+  }, 1500);
 }
 
 // ════════════════════════════════════════════════
@@ -1054,7 +1263,7 @@ function getCustomerContent(s) {
 
   if (s === 'bookings') return `
     <div class="dash-header"><h2>My Bookings</h2><p>All your past and upcoming reservations</p></div>
-    <div class="dash-card">${bookingTable(bookingHistory, true)}</div>`;
+    <div class="dash-card">${bookingTable(bookingHistory, true, false)}</div>`;
 
   if (s === 'budget') return `
     <div class="dash-header"><h2>Budget Tracker</h2><p>Track your travel spending in real time</p></div>
@@ -1107,13 +1316,13 @@ function getCustomerContent(s) {
 
   if (s === 'past') return `
     <div class="dash-header"><h2>Past Trips</h2></div>
-    <div class="dash-card">${bookingTable(bookingHistory.filter(b => b.status === 'Completed'), false)}</div>`;
+    <div class="dash-card">${bookingTable(bookingHistory.filter(b => b.status === 'Completed'), false, false)}</div>`;
 
   if (s === 'wishlist') return `
     <div class="dash-header"><h2>Wishlist</h2></div>
     <div class="dash-card">
       <div class="packages-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
-        ${PACKAGES.slice(2, 5).map(pkgCard).join('')}
+        ${PACKAGES.slice(2, 5).map(pkg => pkgCard(pkg)).join('')}
       </div>
     </div>`;
 
@@ -1147,29 +1356,83 @@ function getAgentContent(s) {
     <div class="form-card">
       <h3>Create Bulk Booking</h3>
       <div class="form-grid">
-        <div class="form-field"><label>Client Name or Company</label><input type="text" placeholder="ABC Corporation" /></div>
-        <div class="form-field"><label>Package</label><select>${PACKAGES.map(p => `<option>${p.title}</option>`).join('')}</select></div>
-        <div class="form-field"><label>Number of Travelers</label><input type="number" value="20" /></div>
-        <div class="form-field"><label>Departure Date</label><input type="date" /></div>
-        <div class="form-field full"><label>Special Notes</label><textarea rows="2" placeholder="Dietary requirements, room preferences..."></textarea></div>
+        <div class="form-field">
+          <label>Client Name or Company <span style="color:red">*</span></label>
+          <input type="text" id="bulkClientName" placeholder="ABC Corporation" required />
+        </div>
+        <div class="form-field">
+          <label>Package <span style="color:red">*</span></label>
+          <select id="bulkPackage" required>
+            <option value="">Select a package</option>
+            ${PACKAGES.map(p => `<option value="${p.id}">${p.title}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Number of Travelers <span style="color:red">*</span></label>
+          <input type="number" id="bulkTravelers" value="20" min="10" max="200" required />
+        </div>
+        <div class="form-field">
+          <label>Departure Date <span style="color:red">*</span></label>
+          <input type="date" id="bulkDate" required />
+        </div>
+        <div class="form-field full">
+          <label>Special Notes</label>
+          <textarea rows="2" id="bulkNotes" placeholder="Dietary requirements, room preferences..."></textarea>
+        </div>
       </div>
-      <button class="btn btn-primary" onclick="showToast('Bulk booking submitted. Awaiting confirmation.')">Submit Bulk Booking</button>
+      <button class="btn btn-primary" id="bulkSubmitBtn" onclick="submitBulkBooking()" disabled>Submit Bulk Booking</button>
+      <script>
+        // Form validation for bulk booking
+        function validateBulkForm() {
+          const clientName = document.getElementById('bulkClientName').value.trim();
+          const packageId = document.getElementById('bulkPackage').value;
+          const travelers = document.getElementById('bulkTravelers').value;
+          const date = document.getElementById('bulkDate').value;
+          const submitBtn = document.getElementById('bulkSubmitBtn');
+
+          const isValid = clientName && packageId && travelers >= 10 && date;
+          submitBtn.disabled = !isValid;
+          submitBtn.style.opacity = isValid ? '1' : '0.5';
+        }
+
+        // Add event listeners
+        document.getElementById('bulkClientName').addEventListener('input', validateBulkForm);
+        document.getElementById('bulkPackage').addEventListener('change', validateBulkForm);
+        document.getElementById('bulkTravelers').addEventListener('input', validateBulkForm);
+        document.getElementById('bulkDate').addEventListener('change', validateBulkForm);
+
+        // Initial validation
+        validateBulkForm();
+      </script>
     </div>`;
 
   if (s === 'clients') return `
-    <div class="dash-header"><h2>Client Management</h2></div>
+    <div class="dash-header"><h2>Client Management</h2><p>Manage your travel clients and their bookings</p></div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="label">Total Clients</div><div class="value">156</div><div class="sub">Active this year</div></div>
+      <div class="stat-card"><div class="label">New This Month</div><div class="value">12</div><div class="sub">+25% growth</div></div>
+      <div class="stat-card"><div class="label">Avg. Trip Value</div><div class="value">$2,840</div><div class="sub">Per booking</div></div>
+      <div class="stat-card"><div class="label">Commission YTD</div><div class="value">$34,200</div><div class="sub">Earned</div></div>
+    </div>
     <div class="dash-card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-        <input type="text" placeholder="Search clients..." style="border:1.5px solid var(--gray-200);border-radius:8px;padding:9px 14px;font-size:.87rem;outline:none;width:240px" />
-        <button class="btn btn-sm btn-primary" onclick="showToast('Opening new client form...')">Add Client</button>
+        <input type="text" id="clientSearch" placeholder="Search clients..." style="border:1.5px solid var(--gray-200);border-radius:8px;padding:9px 14px;font-size:.87rem;outline:none;width:240px" oninput="filterClients()" />
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-sm btn-outline" onclick="exportClients()">Export</button>
+          <button class="btn btn-sm btn-primary" onclick="addNewClient()">Add Client</button>
+        </div>
       </div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Client</th><th>Email</th><th>Trips</th><th>Total Spent</th><th>Action</th></tr></thead>
-        <tbody>
-          <tr><td>Sarah Anderson</td><td>sarah@email.com</td><td>5</td><td>$8,400</td><td><button class="btn btn-sm btn-outline" onclick="showToast('Opening client profile')">View</button></td></tr>
-          <tr><td>Mike Johnson</td><td>mike@corp.com</td><td>12</td><td>$24,100</td><td><button class="btn btn-sm btn-outline" onclick="showToast('Opening client profile')">View</button></td></tr>
-          <tr><td>Priya Patel</td><td>priya@biz.com</td><td>3</td><td>$5,200</td><td><button class="btn btn-sm btn-outline" onclick="showToast('Opening client profile')">View</button></td></tr>
-          <tr><td>Carlos Mendes</td><td>carlos@travel.co</td><td>8</td><td>$14,600</td><td><button class="btn btn-sm btn-outline" onclick="showToast('Opening client profile')">View</button></td></tr>
+      <div class="table-wrap"><table id="clientsTable">
+        <thead><tr><th>Client</th><th>Contact</th><th>Type</th><th>Last Trip</th><th>Total Spent</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="clientsTableBody">
+          <tr data-client-id="sarah-anderson"><td><strong>Sarah Anderson</strong><br><small>Family of 4</small></td><td>sarah@email.com<br>+1 555-0123</td><td>Individual</td><td>Bali Retreat<br><small>Dec 2024</small></td><td>$8,400</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('sarah-anderson')">View</button></td></tr>
+          <tr data-client-id="techcorp-solutions"><td><strong>TechCorp Solutions</strong><br><small>45 employees</small></td><td>travel@techcorp.com<br>+1 555-0456</td><td>Corporate</td><td>Japan Team Building<br><small>Nov 2024</small></td><td>$67,200</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('techcorp-solutions')">View</button></td></tr>
+          <tr data-client-id="mike-johnson"><td><strong>Mike Johnson</strong><br><small>Solo traveler</small></td><td>mike@corp.com<br>+1 555-0789</td><td>Business</td><td>Serengeti Safari<br><small>Oct 2024</small></td><td>$24,100</td><td><span class="badge badge-blue">Planning</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('mike-johnson')">View</button></td></tr>
+          <tr data-client-id="priya-raj-patel"><td><strong>Priya & Raj Patel</strong><br><small>Couple + 2 kids</small></td><td>priya@biz.com<br>+1 555-0321</td><td>Family</td><td>Maldives Resort<br><small>Sep 2024</small></td><td>$12,800</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('priya-raj-patel')">View</button></td></tr>
+          <tr data-client-id="global-marketing"><td><strong>Global Marketing Inc</strong><br><small>28 employees</small></td><td>hr@globalmkt.com<br>+1 555-0654</td><td>Corporate</td><td>Amalfi Team Event<br><small>Aug 2024</small></td><td>$42,600</td><td><span class="badge badge-orange">Inactive</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('global-marketing')">View</button></td></tr>
+          <tr data-client-id="carlos-mendes"><td><strong>Carlos Mendes</strong><br><small>Adventure seeker</small></td><td>carlos@travel.co<br>+1 555-0987</td><td>Individual</td><td>Patagonia Trek<br><small>Jul 2024</small></td><td>$14,600</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('carlos-mendes')">View</button></td></tr>
+          <tr data-client-id="nordic-enterprises"><td><strong>Nordic Enterprises</strong><br><small>67 employees</small></td><td>travel@nordic.com<br>+1 555-0432</td><td>Corporate</td><td>Multiple destinations<br><small>Jun 2024</small></td><td>$89,400</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('nordic-enterprises')">View</button></td></tr>
+          <tr data-client-id="lisa-thompson"><td><strong>Lisa Thompson</strong><br><small>Solo business</small></td><td>lisa@consulting.net<br>+1 555-0765</td><td>Business</td><td>London Conference<br><small>May 2024</small></td><td>$6,200</td><td><span class="badge badge-blue">Planning</span></td><td><button class="btn btn-sm btn-outline" onclick="viewClient('lisa-thompson')">View</button></td></tr>
         </tbody>
       </table></div>
     </div>`;
@@ -1228,14 +1491,36 @@ function getCorporateContent(s) {
     </div>`;
 
   if (s === 'approvals') return `
-    <div class="dash-header"><h2>Approval Workflow</h2></div>
+    <div class="dash-header"><h2>Travel Approvals</h2><p>Review and approve employee travel requests</p></div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="label">Pending</div><div class="value">8</div><div class="sub">Awaiting approval</div></div>
+      <div class="stat-card"><div class="label">This Month</div><div class="value">24</div><div class="sub">Total requests</div></div>
+      <div class="stat-card"><div class="label">Avg. Response</div><div class="value">4.2 hrs</div><div class="sub">Time to approve</div></div>
+      <div class="stat-card"><div class="label">Over Budget</div><div class="value">3</div><div class="sub">Need review</div></div>
+    </div>
     <div class="dash-card">
-      <div class="alert alert-info" style="margin-bottom:16px">5 bookings require your approval. Bookings awaiting approval for more than 48 hours are automatically escalated.</div>
+      <div class="alert alert-info" style="margin-bottom:20px">
+        <strong>8 bookings require approval.</strong> Requests older than 48 hours are automatically escalated to senior management.
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-sm btn-outline active" onclick="filterApprovals('all')">All (8)</button>
+          <button class="btn btn-sm btn-outline" onclick="filterApprovals('urgent')">Urgent (3)</button>
+          <button class="btn btn-sm btn-outline" onclick="filterApprovals('overbudget')">Over Budget (2)</button>
+          <button class="btn btn-sm btn-outline" onclick="filterApprovals('international')">International (5)</button>
+        </div>
+      </div>
       <div class="table-wrap"><table>
-        <thead><tr><th>Submitted</th><th>Employee</th><th>Destination</th><th>Budget</th><th>Justification</th><th>Action</th></tr></thead>
+        <thead><tr><th>Submitted</th><th>Employee</th><th>Department</th><th>Destination</th><th>Purpose</th><th>Cost</th><th>Status</th><th>Actions</th></tr></thead>
         <tbody>
-          <tr><td>Today, 09:14</td><td>Alice Chen</td><td>Tokyo</td><td>$1,840</td><td>Q1 client review</td><td><button class="btn btn-sm btn-primary" onclick="showToast('Approved')">Approve</button></td></tr>
-          <tr><td>Yesterday</td><td>David Park</td><td>London</td><td>$2,100</td><td>Tech conference</td><td><button class="btn btn-sm btn-primary" onclick="showToast('Approved')">Approve</button></td></tr>
+          <tr><td><strong>Today, 09:14</strong><br><small>2 hours ago</small></td><td><strong>Alice Chen</strong><br><small>Senior Sales Rep</small></td><td>Sales</td><td>Tokyo, Japan</td><td>Q1 client review meeting</td><td>$1,840</td><td><span class="badge badge-blue">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('alice-chen')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('alice-chen')">Reject</button></td></tr>
+          <tr><td><strong>Today, 11:32</strong><br><small>23 min ago</small></td><td><strong>David Park</strong><br><small>Tech Lead</small></td><td>Engineering</td><td>London, UK</td><td>Tech conference & team summit</td><td>$2,100</td><td><span class="badge badge-blue">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('david-park')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('david-park')">Reject</button></td></tr>
+          <tr><td><strong>Yesterday</strong><br><small>18 hours ago</small></td><td><strong>Maria Santos</strong><br><small>Marketing Dir</small></td><td>Marketing</td><td>New York, USA</td><td>Cannes Lions advertising festival</td><td>$3,200</td><td><span class="badge badge-orange">Urgent</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('maria-santos')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('maria-santos')">Reject</button></td></tr>
+          <tr><td><strong>2 days ago</strong><br><small>48 hours ago</small></td><td><strong>James Wilson</strong><br><small>Product Mgr</small></td><td>Product</td><td>Singapore</td><td>Product strategy offsite</td><td>$1,650</td><td><span class="badge badge-red">Escalated</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('james-wilson')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('james-wilson')">Reject</button></td></tr>
+          <tr><td><strong>3 days ago</strong><br><small>72 hours ago</small></td><td><strong>Sarah Kim</strong><br><small>HR Manager</small></td><td>Human Resources</td><td>Vancouver, Canada</td><td>HR leadership conference</td><td>$2,400</td><td><span class="badge badge-red">Escalated</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('sarah-kim')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('sarah-kim')">Reject</button></td></tr>
+          <tr><td><strong>Today, 14:45</strong><br><small>1 min ago</small></td><td><strong>Raj Patel</strong><br><small>Sales Rep</small></td><td>Sales</td><td>Mumbai, India</td><td>Client negotiations</td><td>$950</td><td><span class="badge badge-blue">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('raj-patel')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('raj-patel')">Reject</button></td></tr>
+          <tr><td><strong>Yesterday</strong><br><small>16 hours ago</small></td><td><strong>Lisa Thompson</strong><br><small>Finance Dir</small></td><td>Finance</td><td>Sydney, Australia</td><td>Board meeting & audit review</td><td>$4,200 <span class="badge badge-red" style="font-size:0.7rem">Over Budget</span></td><td><span class="badge badge-orange">Urgent</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('lisa-thompson')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('lisa-thompson')">Reject</button></td></tr>
+          <tr><td><strong>Today, 08:30</strong><br><small>4 hours ago</small></td><td><strong>Michael Chen</strong><br><small>VP Sales</small></td><td>Sales</td><td>Dubai, UAE</td><td>Regional sales summit</td><td>$2,800</td><td><span class="badge badge-blue">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveBooking('michael-chen')">Approve</button> <button class="btn btn-sm btn-danger" onclick="rejectBooking('michael-chen')">Reject</button></td></tr>
         </tbody>
       </table></div>
     </div>`;
@@ -1389,12 +1674,14 @@ function fallbackDash(s) {
 }
 
 // ── TABLE & BAR HELPERS ──
-function bookingTable(list, actions) {
+function bookingTable(list, actions, showClient = false) {
   if (!list.length) return '<p style="color:var(--gray-400);font-size:.88rem;text-align:center;padding:20px">No bookings found</p>';
+  const clientCell = showClient ? '<th>Client</th><th>Location</th>' : '';
   return `<div class="table-wrap"><table>
-    <thead><tr><th>Reference</th><th>Package</th><th>Date</th><th>Status</th><th>Amount</th>${actions ? '<th>Action</th>' : ''}</tr></thead>
+    <thead><tr><th>Reference</th>${clientCell}<th>Package</th><th>Date</th><th>Status</th><th>Amount</th>${actions ? '<th>Action</th>' : ''}</tr></thead>
     <tbody>${list.map(b => `<tr>
       <td style="font-family:monospace;font-size:.8rem">${b.ref}</td>
+      ${showClient ? `<td>${b.client || 'N/A'}</td><td>${b.location || 'N/A'}</td>` : ''}
       <td>${b.pkg}</td>
       <td>${b.date}</td>
       <td><span class="badge ${b.status === 'Completed' ? 'badge-green' : b.status === 'Upcoming' ? 'badge-blue' : 'badge-red'}">${b.status}</span></td>
@@ -1412,12 +1699,38 @@ function budgetBar(label, spent, budget, pct) {
     </div>`;
 }
 
-function cancelBooking(ref) {
-  const idx = bookingHistory.findIndex(b => b.ref === ref);
-  if (idx !== -1) {
-    bookingHistory[idx].status = 'Cancelled';
-    showToast('Booking ' + ref + ' has been cancelled');
-    renderDashContent(activeDashSection);
+function submitReview(pkgId) {
+  const name = document.getElementById('reviewName').value.trim();
+  const rating = parseInt(document.getElementById('reviewRating').value);
+  const text = document.getElementById('reviewText').value.trim();
+
+  if (!name || !text) {
+    showToast('Please fill in all fields');
+    return;
+  }
+
+  const pkg = PACKAGES.find(p => p.id === pkgId);
+  if (pkg) {
+    const newReview = {
+      author: name,
+      rating: rating,
+      date: new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }),
+      text: text
+    };
+    pkg.reviewsList.unshift(newReview);
+    pkg.reviews += 1;
+    // Recalculate average rating
+    const totalRating = pkg.reviewsList.reduce((sum, r) => sum + r.rating, 0);
+    pkg.rating = (totalRating / pkg.reviewsList.length).toFixed(1);
+    showToast('Review submitted successfully!');
+    openPackage(pkgId); // Refresh the page
+  }
+}
+
+function updateAIVisibility() {
+  const fab = document.getElementById('aiFab');
+  if (fab) {
+    fab.style.display = currentRole === 'admin' ? 'none' : 'flex';
   }
 }
 
@@ -1496,6 +1809,7 @@ const AI_RESPONSES = [
 ];
 
 function toggleAI() {
+  if (currentRole === 'admin') return; // Hide AI for admin
   const panel = document.getElementById('aiPanel');
   aiOpen = !aiOpen;
   panel.classList.toggle('open', aiOpen);
@@ -1503,6 +1817,7 @@ function toggleAI() {
 }
 
 function openAI() {
+  if (currentRole === 'admin') return; // Hide AI for admin
   aiOpen = true;
   document.getElementById('aiPanel').classList.add('open');
   document.getElementById('aiInput').focus();
@@ -1553,6 +1868,112 @@ function showToast(msg) {
   t.classList.add('show');
   clearTimeout(_toastTimeout);
   _toastTimeout = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function submitBulkBooking() {
+  const clientName = document.getElementById('bulkClientName').value.trim();
+  const packageId = parseInt(document.getElementById('bulkPackage').value);
+  const travelers = parseInt(document.getElementById('bulkTravelers').value);
+  const date = document.getElementById('bulkDate').value;
+  const notes = document.getElementById('bulkNotes').value;
+
+  if (!clientName || !packageId || !travelers || !date) {
+    showToast('Please fill in all required fields', 'error');
+    return;
+  }
+
+  if (travelers < 10) {
+    showToast('Bulk bookings require at least 10 travelers', 'error');
+    return;
+  }
+
+  // In a real app, this would submit to backend
+  showToast(`Bulk booking submitted for ${clientName}. Awaiting confirmation.`);
+  // Reset form
+  document.getElementById('bulkClientName').value = '';
+  document.getElementById('bulkPackage').value = '';
+  document.getElementById('bulkTravelers').value = '20';
+  document.getElementById('bulkDate').value = '';
+  document.getElementById('bulkNotes').value = '';
+  validateBulkForm();
+}
+
+function approveBooking(employeeId) {
+  showToast(`Booking approved for ${employeeId.replace('-', ' ')}`);
+  // In a real app, this would update the database
+  setTimeout(() => {
+    renderDashContent('approvals'); // Refresh the approvals list
+  }, 500);
+}
+
+function rejectBooking(employeeId) {
+  const reason = prompt('Please provide a reason for rejection:');
+  if (reason) {
+    showToast(`Booking rejected for ${employeeId.replace('-', ' ')}: ${reason}`);
+    setTimeout(() => {
+      renderDashContent('approvals'); // Refresh the approvals list
+    }, 500);
+  }
+}
+
+function filterApprovals(filter) {
+  showToast(`Filtering approvals by: ${filter}`);
+  // In a real app, this would filter the table data
+}
+
+// Client management functions
+function filterClients() {
+  const searchTerm = document.getElementById('clientSearch').value.toLowerCase();
+  const rows = document.querySelectorAll('#clientsTableBody tr');
+
+  rows.forEach(row => {
+    const clientName = row.cells[0].textContent.toLowerCase();
+    const contact = row.cells[1].textContent.toLowerCase();
+    const type = row.cells[2].textContent.toLowerCase();
+
+    const matches = clientName.includes(searchTerm) ||
+                   contact.includes(searchTerm) ||
+                   type.includes(searchTerm);
+
+    row.style.display = matches ? '' : 'none';
+  });
+}
+
+function exportClients() {
+  showToast('Exporting client data to CSV...');
+  // In a real app, this would generate and download a CSV file
+}
+
+function addNewClient() {
+  showToast('Opening new client form...');
+  // In a real app, this would open a modal or navigate to a form
+}
+
+function viewClient(clientId) {
+  const client = AGENT_CLIENTS.find(c => c.id === clientId);
+  if (!client) {
+    showToast('Client profile not found', 'error');
+    return;
+  }
+
+  const detailHtml = `
+    <div class="dash-header"><h2>${client.name}</h2><p>Client details and booking history</p></div>
+    <div class="dash-card" style="margin-bottom:20px">
+      <div><strong>Contact:</strong> ${client.contact} &bull; ${client.phone}</div>
+      <div><strong>Type:</strong> ${client.type}</div>
+      <div><strong>Last Trip:</strong> ${client.lastTrip}</div>
+      <div><strong>Total Spent:</strong> ${client.totalSpent}</div>
+      <div><strong>Status:</strong> <span class="badge ${client.status === 'Active' ? 'badge-green' : client.status === 'Planning' ? 'badge-blue' : 'badge-orange'}">${client.status}</span></div>
+      <div><strong>Details:</strong> ${client.details}</div>
+    </div>
+    <div class="dash-card">
+      <h4>Recent Bookings</h4>
+      ${bookingTable(bookingHistory.filter(b => b.client && b.client.toLowerCase().includes(client.name.toLowerCase().split(' ')[0])), false)}
+    </div>
+    <button class="btn btn-sm btn-outline" onclick="renderDashContent('clients')">Back to client list</button>
+  `;
+
+  document.getElementById('dashContent').innerHTML = detailHtml;
 }
 
 // ════════════════════════════════════════════════
