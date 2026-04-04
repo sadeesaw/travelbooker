@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TravelBooker – Explore. Book. Go.</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232D6A4F' d='M12 2L2 7l10 5 10-5-10-5zm0 18l-10-5v-5l10 5 10-5v5l-10 5z'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2363b3ff' d='M12 2L2 7l10 5 10-5-10-5zm0 18l-10-5v-5l10 5 10-5v5l-10 5z'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -26,9 +26,22 @@
   </div>
   <div class="nav-links">
     <button class="nav-link active" onclick="navigate('home')">Home</button>
+    <button class="nav-link" onclick="navigate('about')">About</button>
+    <button class="nav-link" onclick="navigate('hotels')">Destinations</button>
     <button class="nav-link" onclick="navigate('packages')">Packages</button>
     <button class="nav-link" onclick="navigate('login')">Login</button>
     <button class="nav-link" onclick="navigate('dashboard')">Dashboard</button>
+    <select id="currencySelector" onchange="changeCurrency(this.value)" class="nav-currency-selector">
+      <option value="Sri Lanka">🇱🇰 Sri Lanka (LKR)</option>
+      <option value="USA">🇺🇸 USA (USD)</option>
+      <option value="UK">🇬🇧 UK (GBP)</option>
+      <option value="India">🇮🇳 India (INR)</option>
+      <option value="Australia">🇦🇺 Australia (AUD)</option>
+      <option value="Canada">🇨🇦 Canada (CAD)</option>
+      <option value="Germany">🇩🇪 Germany (EUR)</option>
+      <option value="Japan">🇯🇵 Japan (JPY)</option>
+      <option value="Singapore">🇸🇬 Singapore (SGD)</option>
+    </select>
   </div>
 </nav>
 
@@ -50,14 +63,14 @@
       </div>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num">4,200+</div><div class="lbl">Tour Packages</div></div>
+      <div class="hero-stat"><div class="num">11</div><div class="lbl">Tour Packages</div></div>
       <div class="hero-stat"><div class="num">180+</div><div class="lbl">Destinations</div></div>
       <div class="hero-stat"><div class="num">98k+</div><div class="lbl">Happy Travelers</div></div>
     </div>
     <div class="search-bar">
       <div class="search-field">
         <label for="searchDest">Destination</label>
-        <input type="text" id="searchDest" placeholder="Maldives" />
+        <input type="text" id="searchDest" placeholder="Yala" />
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
@@ -71,8 +84,8 @@
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
-        <label for="searchBudget">Max Budget (USD)</label>
-        <input type="number" id="searchBudget" placeholder="5000" min="0" />
+        <label for="searchBudget">Max Budget (LKR)</label>
+        <input type="number" id="searchBudget" placeholder="500000" min="0" />
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
@@ -98,11 +111,121 @@
     </div>
   </section>
 
-  <!-- Why TravelBooker -->
+  <!-- Featured Destinations -->
   <section class="section">
     <div class="section-header">
-      <div class="eyebrow">Why Choose Us</div>
-      <h2>Travel Smarter</h2>
+      <div class="eyebrow">Luxury Destinations</div>
+      <h2>Featured Destinations</h2>
+      <p>Discover exceptional accommodations across Sri Lanka's most beautiful regions</p>
+    </div>
+    <div class="packages-grid" id="featuredHotelsGrid"></div>
+    <div class="section-cta">
+      <button class="btn btn-outline" onclick="navigate('hotels')">View All Destinations</button>
+    </div>
+  </section>
+
+  <!-- Guest Stories -->
+  <section class="section">
+    <div class="section-header">
+      <div class="eyebrow">Trusted by Travelers</div>
+      <h2>Guest Stories</h2>
+      <p>Hear from travelers who explored Sri Lanka with TravelBooker and returned home with unforgettable memories.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <div class="testimonial-quote">"Smooth booking from start to finish. I discovered a beautiful coastal resort through this site and everything exceeded expectations. Comparing options was super simple and saved me a lot of time."</div>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Daniel H.</div>
+          <div class="testimonial-location">Manchester, UK</div>
+          <div class="testimonial-badge">Frequent Traveller</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <div class="testimonial-quote">"Booked my work trip with ease. The business travel features really stood out, especially the quick support and flexible arrangements. Definitely my go-to for future Sri Lanka visits."</div>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Anika Sharma</div>
+          <div class="testimonial-location">Delhi, India</div>
+          <div class="testimonial-badge">Business Traveller</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <div class="testimonial-quote">"Our honeymoon was unforgettable thanks to the recommendations we got here. The hotel upgrade we received was such a pleasant surprise. Already thinking about coming back!"</div>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Lucas & Maria R.</div>
+          <div class="testimonial-location">Barcelona, Spain</div>
+          <div class="testimonial-badge">Honeymoon Couple</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★☆</div>
+        <div class="testimonial-quote">"Really user-friendly platform with excellent filters. I was able to find a peaceful nature retreat in the hills without any hassle. The planning tools were very helpful too."</div>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Jonas Weber</div>
+          <div class="testimonial-location">Zurich, Switzerland</div>
+          <div class="testimonial-badge">Solo Explorer</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <div class="testimonial-quote">"As someone who travels locally often, I love the deals available here. Prices in local currency make everything easier, and the rewards system is a nice bonus."</div>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Nadeesha Perera</div>
+          <div class="testimonial-location">Galle, Sri Lanka</div>
+          <div class="testimonial-badge">Local Traveller</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★☆</div>
+        <div class="testimonial-quote">"Organized our entire family vacation through this platform. Everything went smoothly, and the destinations suited both kids and adults perfectly. Great value and reliable support."</div>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Chen Family</div>
+          <div class="testimonial-location">Kuala Lumpur, Malaysia</div>
+          <div class="testimonial-badge">Family Travelers</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta">
+      <button class="btn btn-primary" onclick="toggleStoryPanel()">Share Your Experience</button>
+    </div>
+    <div id="shareStoryPanel" class="share-story-panel">
+      <label for="storyText" style="display:block;font-weight:700;margin-bottom:10px;color:var(--green-dark)">Share your story</label>
+      <textarea id="storyText" placeholder="Tell us about your favorite moment, hotel, or tour..." aria-label="Share your experience"></textarea>
+      <button class="btn btn-primary" style="margin-top:16px;" onclick="submitGuestStory()">Submit Story</button>
+    </div>
+  </section>
+
+  <!-- Featured Video -->
+  <section class="section bg-offwhite">
+    <div class="section-header">
+      <div class="eyebrow">Explore Sri Lanka</div>
+      <h2>Why Visit Sri Lanka?</h2>
+      <p>Learn from experts and discover Sri Lanka. The Pearl of the Indian Ocean offers golden beaches, ancient wonders, and wild safaris all on one unforgettable island.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/nnkg61jOhtM?rel=0&controls=1&showinfo=0&modestbranding=1" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="video-label">Jetwing Lagoon Wellness | Geoffre Sheneller</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/l8xRJgFr-dY?rel=0&controls=1&showinfo=0&modestbranding=1" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="video-label">The Kandy Esala Perahera | 2021</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/Q5l-ohDJOn0?rel=0&controls=1&showinfo=0&modestbranding=1" title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="video-label">We Found Paradise | Sri Lanka | Jumping Places</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature cards section -->
+  <section class="section">
+    <div class="section-header">
+      <div class="eyebrow">Travel Smarter</div>
+      <h2>Why Choose Us</h2>
+      <p>Built for contemporary travelers, corporate partners, and travel agents alike.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card" onclick="navigate('info-travel-smarter')" style="cursor:pointer">
@@ -143,88 +266,16 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer id="main-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo footer-logo" onclick="navigate('home')">
-          <div class="logo-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
-          </div>
-          <span class="logo-text footer-logo-text">Travel<span>Booker</span></span>
-        </div>
-        <p>Your AI-powered travel companion for unforgettable journeys around the world.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="Twitter/X">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="#" onclick="navigate('info-about');return false;">About Us</a></li>
-          <li><a href="#" onclick="navigate('info-careers');return false;">Careers</a></li>
-          <li><a href="#" onclick="navigate('info-contact');return false;">Contact</a></li>
-          <li><a href="#" onclick="navigate('info-press');return false;">Press</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Support</h5>
-        <ul>
-          <li><a href="#" onclick="navigate('info-help');return false;">Help Center</a></li>
-          <li><a href="#" onclick="navigate('info-faq');return false;">FAQs</a></li>
-          <li><a href="#" onclick="navigate('info-cancel');return false;">Cancellation Policy</a></li>
-          <li><a href="#" onclick="navigate('info-chat');return false;">Live Chat</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="#" onclick="navigate('info-destinations');return false;">Destinations</a></li>
-          <li><a href="#" onclick="navigate('packages');return false;">Travel Packages</a></li>
-          <li><a href="#" onclick="navigate('info-deals');return false;">Deals</a></li>
-          <li><a href="#" onclick="navigate('info-guides');return false;">Guides</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="newsletter-wrap">
-      <div class="newsletter-text">
-        <h5>Stay in the loop</h5>
-        <p>Get exclusive deals and travel inspiration to your inbox</p>
-      </div>
-      <div class="newsletter-form">
-        <input type="email" placeholder="your@email.com" aria-label="Email address" />
-        <button class="btn btn-primary btn-sm" onclick="handleNewsletter()">Subscribe</button>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>2025 TravelBooker. All rights reserved.</span>
-      <div class="footer-legal">
-        <a href="#" onclick="navigate('legal');return false;">Privacy Policy</a>
-        <a href="#" onclick="navigate('legal');return false;">Terms &amp; Conditions</a>
-        <a href="#" onclick="navigate('legal');return false;">Cookie Policy</a>
-      </div>
-    </div>
-  </footer>
 </div>
 
-<!-- ════════════════════════════════════════
-     PAGE: PACKAGES
-════════════════════════════════════════ -->
+<!-- PAGE: PACKAGES -->
 <div class="page" id="page-packages">
   <div class="page-hero-bar">
     <div class="page-hero-bar-inner">
       <button class="back-btn light" onclick="navigate('home')">Back to Home</button>
       <div>
         <h2>Tour Packages</h2>
-        <p>Explore <span id="pkgCount">24</span> curated experiences worldwide</p>
+        <p>Explore <span id="pkgCount">11</span> curated experiences worldwide</p>
       </div>
     </div>
   </div>
@@ -250,8 +301,8 @@
       </select>
     </div>
     <div class="filter-group">
-      <label for="filterBudget">Max Budget (USD)</label>
-      <input type="number" id="filterBudget" placeholder="5000" oninput="filterPackages()" />
+      <label for="filterBudget">Max Budget (LKR)</label>
+      <input type="number" id="filterBudget" placeholder="500000" oninput="filterPackages()" />
     </div>
     <div class="filter-group">
       <label for="filterSort">Sort By</label>
@@ -270,6 +321,76 @@
   </div>
   <div class="section-body">
     <div class="packages-grid" id="pkgGrid"></div>
+  </div>
+  <footer class="footer-mini">
+    <span>2025 TravelBooker</span>
+    <div><a href="#" onclick="navigate('legal');return false;">Privacy</a> · <a href="#" onclick="navigate('legal');return false;">Terms</a> · <a href="#" onclick="navigate('info-help');return false;">Help</a></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: HOTELS
+════════════════════════════════════════ -->
+<div class="page" id="page-hotels">
+  <div class="page-hero-bar">
+    <div class="page-hero-bar-inner">
+      <button class="back-btn light" onclick="navigate('home')">Back to Home</button>
+      <div>
+        <h2>Luxury Destinations</h2>
+        <p>Discover <span id="hotelCount">10</span> exceptional stays across Sri Lanka</p>
+      </div>
+    </div>
+  </div>
+  <div class="filters-bar">
+    <div class="filter-group">
+      <label for="filterHotelLoc">Location</label>
+      <select id="filterHotelLoc" onchange="filterHotels()">
+        <option value="">All Locations</option>
+        <option value="Colombo">Colombo</option>
+        <option value="Negombo">Negombo</option>
+        <option value="Dambulla">Dambulla</option>
+        <option value="Kandy">Kandy</option>
+        <option value="Galle">Galle</option>
+        <option value="Nuwara Eliya">Nuwara Eliya</option>
+        <option value="Ella">Ella</option>
+        <option value="Yala">Yala</option>
+        <option value="Galle Fort">Galle Fort</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="filterHotelCat">Category</label>
+      <select id="filterHotelCat" onchange="filterHotels()">
+        <option value="">All Categories</option>
+        <option value="5-Star">5-Star</option>
+        <option value="4-Star">4-Star</option>
+        <option value="3-Star">3-Star</option>
+        <option value="Luxury">Luxury</option>
+        <option value="Boutique">Boutique</option>
+        <option value="Eco">Eco</option>
+        <option value="Heritage">Heritage</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="filterHotelBudget">Max Price (LKR)</label>
+      <input type="number" id="filterHotelBudget" placeholder="700" oninput="filterHotels()" />
+    </div>
+    <div class="filter-group">
+      <label for="filterHotelSort">Sort By</label>
+      <select id="filterHotelSort" onchange="filterHotels()">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Rating</option>
+        <option value="discount">Discount</option>
+      </select>
+    </div>
+    <div class="filter-actions">
+      <button class="btn btn-sm btn-outline" id="compareHotelBtn" onclick="runHotelCompare()" style="display:none;">Compare (<span id="compareHotelCnt">0</span>)</button>
+      <button class="btn btn-sm btn-ghost-dark" onclick="clearHotelFilters()">Clear Filters</button>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="packages-grid" id="hotelGrid"></div>
   </div>
   <footer class="footer-mini">
     <span>2025 TravelBooker</span>
@@ -320,6 +441,46 @@
     </div>
     <aside class="detail-sidebar">
       <div class="booking-card" id="detailBookingCard"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: HOTEL DETAIL
+════════════════════════════════════════ -->
+<div class="page" id="page-hotel-detail">
+  <div class="detail-hero">
+    <div id="hotelDetailImg" class="detail-hero-img" style="background-size: cover; background-position: center;"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="chip-row">
+        <span class="tag" id="hotelDetailLocation"></span>
+        <span class="tag" id="hotelDetailType"></span>
+      </div>
+      <h1 id="hotelDetailTitle"></h1>
+      <div class="detail-meta">
+        <span id="hotelDetailRating"></span>
+      </div>
+    </div>
+  </div>
+  <div class="detail-action-bar">
+    <button class="back-btn" onclick="navigate('hotels')">Back to Hotels</button>
+    <div class="detail-action-right">
+      <button class="btn btn-sm btn-outline" onclick="addToCompare(currentHotel)">Add to Compare</button>
+      <button class="btn btn-sm btn-primary" onclick="navigate('booking')">Book Now</button>
+    </div>
+  </div>
+  <div class="detail-body">
+    <div class="detail-main">
+      <div class="hotel-detail-content">
+        <h2>About This Hotel</h2>
+        <p id="hotelDetailDesc"></p>
+        <h3>Amenities</h3>
+        <div id="hotelDetailAmenities" class="amenities-grid"></div>
+      </div>
+    </div>
+    <aside class="detail-sidebar">
+      <div class="booking-card" id="hotelDetailPrice"></div>
     </aside>
   </div>
 </div>
@@ -474,7 +635,7 @@
         <!-- Sign In Form -->
         <div id="loginForm" class="auth-form active">
           <h2>Welcome Back</h2>
-          <p>Access your account to manage bookings and more</p>
+          <p>Access your account to continue your journey</p>
 
           <!-- Social Login -->
           <div class="social-login">
@@ -792,10 +953,89 @@
      PAGE: INFO (About, Careers, Contact, etc.)
 ════════════════════════════════════════ -->
 <div class="page" id="page-info">
+  <div class="info-page-hero" style="background-image:url('https://connectpls.com/wp-content/uploads/solo_group_travel.jpeg')">
+    <div class="info-hero-overlay"></div>
+    <div class="info-hero-text">
+      <div class="eyebrow">About TravelBooker</div>
+      <h1>Modern travel for solo explorers, groups, and corporate partners</h1>
+      <p>Streamlined booking, smarter collaboration, and premium support for every trip type.</p>
+      <button class="btn btn-primary" onclick="navigate('packages')">Explore Packages</button>
+    </div>
+  </div>
   <div class="info-page-wrap">
     <div id="infoContent"></div>
   </div>
 </div>
+
+<!-- Footer -->
+<footer id="main-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo footer-logo" onclick="navigate('home')">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+        </div>
+        <span class="logo-text footer-logo-text">Travel<span>Booker</span></span>
+      </div>
+      <p>Sri Lanka's leading online travel booking platform, connecting travelers, travel agents, and hotels since 2026. A product of CodeGen International.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter/X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#" onclick="navigate('info-about');return false;">About Us</a></li>
+        <li><a href="#" onclick="navigate('info-careers');return false;">Careers</a></li>
+        <li><a href="#" onclick="navigate('info-contact');return false;">Contact</a></li>
+        <li><a href="#" onclick="navigate('info-press');return false;">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#" onclick="navigate('info-help');return false;">Help Center</a></li>
+        <li><a href="#" onclick="navigate('info-faq');return false;">FAQs</a></li>
+        <li><a href="#" onclick="navigate('info-cancel');return false;">Cancellation Policy</a></li>
+        <li><a href="#" onclick="navigate('info-chat');return false;">Live Chat</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#" onclick="navigate('hotels');return false;">Destinations</a></li>
+        <li><a href="#" onclick="navigate('packages');return false;">Travel Packages</a></li>
+        <li><a href="#" onclick="navigate('info-guides');return false;">Guides</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="newsletter-wrap">
+    <div class="newsletter-text">
+      <h5>Stay in the loop</h5>
+      <p>Get exclusive deals and travel inspiration to your inbox</p>
+    </div>
+    <div class="newsletter-form">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" />
+      <button class="btn btn-primary btn-sm" onclick="handleNewsletter()">Subscribe</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>2025 TravelBooker. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#" onclick="navigate('legal');return false;">Privacy Policy</a>
+      <a href="#" onclick="navigate('legal');return false;">Terms &amp; Conditions</a>
+      <a href="#" onclick="navigate('legal');return false;">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
 
 <!-- ════════════════════════════════════════
      AI CHAT WIDGET
@@ -810,7 +1050,7 @@
     <button onclick="toggleAI()" aria-label="Close chat">&#10005;</button>
   </div>
   <div class="ai-messages" id="aiMessages">
-    <div class="ai-msg bot"><div class="bubble">Hello! I am your AI travel assistant. Ask me about destinations, packages, visa requirements, budget planning, or anything travel-related.</div></div>
+    <div class="ai-msg bot"><div class="bubble">Ayubowan! I am your AI travel assistant. Ask me about destinations, packages, visa requirements, budget planning, or anything travel-related.</div></div>
   </div>
   <div class="ai-input-area">
     <input type="text" id="aiInput" placeholder="Ask me anything..." aria-label="Chat input" onkeydown="if(event.key==='Enter')sendAI()" />
