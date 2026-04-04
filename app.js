@@ -631,6 +631,7 @@ let currentRole = 'customer';
 let currentPkg  = null;
 let currentHotel = null;
 let compareList = [];
+let hotelCompareList = [];
 let rooms       = [{ id: 1, people: 2 }];
 let bookingStep = 1;
 let aiOpen      = false;
@@ -772,8 +773,13 @@ function navigate(pageId) {
   }
 
   // Highlight correct nav link
-  const navMap = { home: 'Home', packages: 'Packages', hotels: 'Hotels', login: 'Login', dashboard: 'Dashboard' };
-  const navLabel = navMap[targetId];
+  const navMap = { home: 'Home', packages: 'Packages', hotels: 'Destinations', about: 'About', login: 'Login', dashboard: 'Dashboard' };
+  let navLabel = navMap[targetId];
+  if (targetId === 'info') {
+    // For info pages, find the corresponding nav link
+    if (pageId === 'about') navLabel = 'About';
+    // Add more if needed
+  }
   if (navLabel) {
     document.querySelectorAll('.nav-link').forEach(l => {
       if (l.textContent.trim() === navLabel) l.classList.add('active');
@@ -1217,10 +1223,10 @@ function renderGroupPackages(dest, budget = Infinity) {
   }
   list = list.filter(p => p.price <= budget);
   const grid = document.getElementById('groupGrid');
-  if (grid) grid.innerHTML = list.map(pkgCard).join('');
+  if (grid) grid.innerHTML = list.map(pkg => pkgCard(pkg, false, true)).join('');
 }
 
-function pkgCard(pkg, familyMode = false) {
+function pkgCard(pkg, familyMode = false, groupMode = false) {
   const childInfo = familyMode && pkg.childDiscount ? `<div style="font-size:.8rem;color:var(--green);margin-top:4px">👶 ${pkg.childDiscount}</div>` : '';
 
   // Calculate discount display
@@ -1242,6 +1248,7 @@ function pkgCard(pkg, familyMode = false) {
         <div class="pkg-badge"><span class="badge">${pkg.badge}</span></div>
         ${discountBadge}
         ${familyMode ? '<div class="pkg-badge" style="top:8px;right:8px"><span class="badge badge-green">👨‍👩‍👧‍👦 Family</span></div>' : ''}
+        ${groupMode ? '<div class="pkg-badge" style="top:8px;right:8px"><span class="badge badge-blue">👥 Group</span></div>' : ''}
         <button class="pkg-fav" onclick="event.stopPropagation();showToast('Added to wishlist')" aria-label="Add to wishlist">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </button>
@@ -1494,11 +1501,11 @@ function filterHotels() {
   const sort = document.getElementById('filterHotelSort').value;
 
   if (location) list = list.filter(h => h.location === location);
-  if (type) list = list.filter(h => h.type === type);
-  list = list.filter(h => h.pricePerNight <= budget);
+  if (type) list = list.filter(h => h.category === type);
+  list = list.filter(h => h.discountedPrice <= budget);
 
-  if (sort === 'price-asc') list.sort((a, b) => a.pricePerNight - b.pricePerNight);
-  if (sort === 'price-desc') list.sort((a, b) => b.pricePerNight - a.pricePerNight);
+  if (sort === 'price-asc') list.sort((a, b) => a.discountedPrice - b.discountedPrice);
+  if (sort === 'price-desc') list.sort((a, b) => b.discountedPrice - a.discountedPrice);
   if (sort === 'rating') list.sort((a, b) => b.rating - a.rating);
 
   renderHotels(list);
@@ -1810,6 +1817,249 @@ function renderGroupComparison() {
       </ul>
     </div>
   `;
+}
+
+// Group feature modals
+function showGroupAccessModal() {
+  const html = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Group Access & Tracking</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Real-time group booking visibility and progress tracking:</p>
+        <div class="group-bookings">
+          <div class="booking-status">
+            <h4>Current Group Bookings</h4>
+            <div class="status-item">
+              <div class="status-icon">✓</div>
+              <div class="status-text">Hotel booking confirmed - Heritance Kandalama</div>
+              <div class="status-date">2026-04-15</div>
+            </div>
+            <div class="status-item">
+              <div class="status-icon">⏳</div>
+              <div class="status-text">Package booking in progress - Cultural & Heritage</div>
+              <div class="status-date">2026-05-01</div>
+            </div>
+            <div class="status-item">
+              <div class="status-icon">💳</div>
+              <div class="status-text">Payment pending - Split payment initiated</div>
+              <div class="status-date">Awaiting confirmation</div>
+            </div>
+          </div>
+          <div class="group-members">
+            <h4>Group Members (5)</h4>
+            <div class="member-item">John Doe - Coordinator</div>
+            <div class="member-item">Jane Smith - Confirmed</div>
+            <div class="member-item">Bob Johnson - Pending</div>
+            <div class="member-item">Alice Brown - Confirmed</div>
+            <div class="member-item">Charlie Wilson - Confirmed</div>
+          </div>
+        </div>
+        <div class="alert alert-success">All group members can view this dashboard in real-time.</div>
+      </div>
+    </div>
+  `;
+  showModal(html);
+}
+
+function showGroupDashboardModal() {
+  const html = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Trip Coordinator Dashboard</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Centralized trip management for coordinators:</p>
+        <div class="coordinator-tools">
+          <div class="tool-section">
+            <h4>Manage Group Bookings</h4>
+            <button class="btn btn-sm btn-primary" onclick="showToast('Booking management opened')">Edit Hotel Booking</button>
+            <button class="btn btn-sm btn-outline" onclick="showToast('Package management opened')">Modify Package</button>
+            <button class="btn btn-sm btn-outline" onclick="showToast('Room assignment opened')">Reassign Rooms</button>
+          </div>
+          <div class="tool-section">
+            <h4>Send Updates to Group</h4>
+            <button class="btn btn-sm btn-primary" onclick="showToast('Notification sent')">Send Itinerary Update</button>
+            <button class="btn btn-sm btn-outline" onclick="showToast('Reminder sent')">Payment Reminder</button>
+          </div>
+          <div class="tool-section">
+            <h4>Track Progress</h4>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%"></div>
+            </div>
+            <p>75% of group members have confirmed</p>
+          </div>
+        </div>
+        <div class="alert alert-success">You are the designated trip coordinator for this group.</div>
+      </div>
+    </div>
+  `;
+  showModal(html);
+}
+
+function showGroupDiscountsModal() {
+  const html = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Group Discounts & Packages</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Special pricing and packages for groups:</p>
+        <div class="discounts-list">
+          <div class="discount-item">
+            <h4>5+ Travelers: 5% Off</h4>
+            <p>Automatic discount applied to packages and hotels</p>
+            <span class="badge badge-green">Active</span>
+          </div>
+          <div class="discount-item">
+            <h4>10+ Travelers: 10% Off</h4>
+            <p>Additional discount for larger groups</p>
+            <span class="badge badge-green">Active</span>
+          </div>
+          <div class="discount-item">
+            <h4>Custom Group Packages</h4>
+            <p>Tailored experiences with added inclusions</p>
+            <button class="btn btn-sm btn-primary" onclick="showToast('Contacting sales team')">Request Quote</button>
+          </div>
+          <div class="discount-item">
+            <h4>Corporate Rates</h4>
+            <p>Special pricing for business groups</p>
+            <button class="btn btn-sm btn-outline" onclick="showToast('Corporate form opened')">Apply</button>
+          </div>
+        </div>
+        <div class="alert alert-success">Group discounts are automatically applied at checkout.</div>
+      </div>
+    </div>
+  `;
+  showModal(html);
+}
+
+function showGroupPaymentModal() {
+  const html = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Split Payment Tools</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Easy cost-sharing for group bookings:</p>
+        <div class="payment-tools">
+          <div class="payment-section">
+            <h4>Payment Splitting Options</h4>
+            <div class="split-option">
+              <input type="radio" name="split" id="equal" checked>
+              <label for="equal">Equal split among all members</label>
+            </div>
+            <div class="split-option">
+              <input type="radio" name="split" id="custom">
+              <label for="custom">Custom amounts per person</label>
+            </div>
+            <div class="split-option">
+              <input type="radio" name="split" id="coordinator">
+              <label for="coordinator">Coordinator pays, members reimburse</label>
+            </div>
+          </div>
+          <div class="payment-section">
+            <h4>Payment Methods</h4>
+            <div class="method-item">💳 Credit/Debit Cards</div>
+            <div class="method-item">🏦 Bank Transfers</div>
+            <div class="method-item">📱 Digital Wallets</div>
+            <div class="method-item">💰 Cash Payments</div>
+          </div>
+          <div class="payment-section">
+            <h4>Current Split Status</h4>
+            <div class="status-item">John Doe - $500 - Paid ✓</div>
+            <div class="status-item">Jane Smith - $500 - Paid ✓</div>
+            <div class="status-item">Bob Johnson - $500 - Pending ⏳</div>
+            <div class="status-item">Alice Brown - $500 - Paid ✓</div>
+            <div class="status-item">Charlie Wilson - $500 - Paid ✓</div>
+          </div>
+        </div>
+        <div class="alert alert-info">Secure payment processing with automatic tracking.</div>
+      </div>
+    </div>
+  `;
+  showModal(html);
+}
+
+function showGroupPoliciesModal() {
+  const html = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Flexible Policies</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Group-friendly booking policies:</p>
+        <div class="policies-list">
+          <div class="policy-item">
+            <h4>Free Cancellation</h4>
+            <p>Up to 30 days before travel - 100% refund</p>
+            <span class="badge badge-green">Available</span>
+          </div>
+          <div class="policy-item">
+            <h4>Flexible Date Changes</h4>
+            <p>Modify dates with minimal fees up to 14 days prior</p>
+            <span class="badge badge-green">Available</span>
+          </div>
+          <div class="policy-item">
+            <h4>Group Size Adjustments</h4>
+            <p>Add or remove members up to 7 days before travel</p>
+            <span class="badge badge-green">Available</span>
+          </div>
+          <div class="policy-item">
+            <h4>Special Group Considerations</h4>
+            <p>Extended support for large groups and special needs</p>
+            <button class="btn btn-sm btn-primary" onclick="showToast('Support contacted')">Contact Support</button>
+          </div>
+        </div>
+        <div class="alert alert-success">All policies apply automatically to group bookings.</div>
+      </div>
+    </div>
+  `;
+  showModal(html);
+}
+
+function showGroupComparisonModal() {
+  const html = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Interactive Comparison Charts</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Visual comparison tools for groups:</p>
+        <div class="comparison-tools">
+          <div class="tool-section">
+            <h4>Package Comparison</h4>
+            <button class="btn btn-sm btn-primary" onclick="runCompare()">Compare Selected Packages</button>
+            <p>Side-by-side feature analysis</p>
+          </div>
+          <div class="tool-section">
+            <h4>Cost Breakdown</h4>
+            <button class="btn btn-sm btn-outline" onclick="showToast('Cost chart opened')">View Cost Analysis</button>
+            <p>Per-person vs total costs</p>
+          </div>
+          <div class="tool-section">
+            <h4>Group Voting</h4>
+            <button class="btn btn-sm btn-outline" onclick="showToast('Voting started')">Start Group Poll</button>
+            <p>Let members vote on options</p>
+          </div>
+          <div class="tool-section">
+            <h4>Download Reports</h4>
+            <button class="btn btn-sm btn-primary" onclick="showToast('Report downloaded')">Export Comparison</button>
+            <p>Shareable comparison sheets</p>
+          </div>
+        </div>
+        <div class="alert alert-info">Interactive tools for collaborative decision making.</div>
+      </div>
+    </div>
+  `;
+  showModal(html);
 }
 
 function renderTravelSmarter() {
@@ -2657,13 +2907,17 @@ function updateAIVisibility() {
 // ════════════════════════════════════════════════
 // COMPARE
 // ════════════════════════════════════════════════
-function addToCompare(pkg) {
-  if (!pkg) return;
-  if (compareList.find(p => p.id === pkg.id)) { showToast(pkg.title + ' is already in compare list'); return; }
-  if (compareList.length >= 3) { showToast('You can compare up to 3 packages'); return; }
-  compareList.push(pkg);
+function addToCompare(item) {
+  if (!item) return;
+  const isHotel = item.location !== undefined; // Hotels have location, packages have dest
+  const list = isHotel ? hotelCompareList : compareList;
+  const name = item.title || item.name || 'Item';
+  
+  if (list.find(p => p.id === item.id)) { showToast(name + ' is already in compare list'); return; }
+  if (list.length >= 3) { showToast('You can compare up to 3 items'); return; }
+  list.push(item);
   updateCompareBar();
-  showToast(pkg.title + ' added to comparison');
+  showToast(name + ' added to comparison');
 }
 
 function updateCompareBar() {
@@ -2684,10 +2938,58 @@ function updateCompareBar() {
     bar.classList.remove('visible');
     if (btn) btn.style.display = 'none';
   }
+  
+  // Update hotel compare
+  updateHotelCompareBar();
+}
+
+function updateHotelCompareBar() {
+  const cnt = document.getElementById('compareHotelCnt');
+  const btn = document.getElementById('compareHotelBtn');
+  
+  if (cnt) cnt.textContent = hotelCompareList.length;
+  if (btn) btn.style.display = hotelCompareList.length > 0 ? 'inline-flex' : 'none';
 }
 
 function removeCompare(id) { compareList = compareList.filter(p => p.id !== id); updateCompareBar(); }
 function clearCompare()    { compareList = []; updateCompareBar(); }
+
+function removeHotelCompare(id) { hotelCompareList = hotelCompareList.filter(h => h.id !== id); updateHotelCompareBar(); }
+function clearHotelCompare()    { hotelCompareList = []; updateHotelCompareBar(); }
+
+function runHotelCompare() {
+  if (hotelCompareList.length < 2) { showToast('Select at least 2 hotels to compare'); return; }
+
+  const rows = ['Name', 'Location', 'Category', 'Rating', 'Price', 'Amenities'];
+  const getVal = (hotel, key) => {
+    switch (key) {
+      case 'Name': return hotel.name || 'N/A';
+      case 'Location': return hotel.location || 'N/A';
+      case 'Category': return hotel.category || 'N/A';
+      case 'Rating': return hotel.rating ? `${hotel.rating} (${hotel.ratingLabel})` : 'N/A';
+      case 'Price': return `$${hotel.discountedPrice || hotel.price || 'N/A'}`;
+      case 'Amenities': return hotel.amenities ? hotel.amenities.slice(0, 3).join(', ') : 'N/A';
+      default: return 'N/A';
+    }
+  };
+
+  const headerCells = hotelCompareList.map(hotel => {
+    const name = hotel.name || 'Hotel';
+    return `<th style="padding:10px 14px;border-bottom:2px solid var(--gray-200);text-align:center"><div style="font-family:'Playfair Display',serif;font-size:.92rem;color:var(--green-dark)">${name}</div></th>`;
+  }).join('');
+
+  const bodyRows = rows.map(label => {
+    const cells = hotelCompareList.map(hotel => `<td style="padding:10px 14px;text-align:center;border-bottom:1px solid var(--gray-100)">${getVal(hotel, label)}</td>`).join('');
+    return `<tr><td style="padding:10px 14px;font-weight:600;color:var(--gray-600);border-bottom:1px solid var(--gray-100)">${label}</td>${cells}</tr>`;
+  }).join('');
+
+  document.getElementById('compareContent').innerHTML = `
+    <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+      <thead><tr><th style="text-align:left;padding:10px 14px;border-bottom:2px solid var(--gray-200)">Feature</th>${headerCells}</tr></thead>
+      <tbody>${bodyRows}</tbody>
+    </table>`;
+  document.getElementById('compareModal').classList.add('open');
+}
 
 function runCompare() {
   if (compareList.length < 2) { showToast('Select at least 2 items to compare'); return; }
@@ -2729,6 +3031,19 @@ function runCompare() {
 
 function closeCompareModal(e) {
   if (e.target.id === 'compareModal') document.getElementById('compareModal').classList.remove('open');
+}
+
+function showModal(html) {
+  document.getElementById('generalModalContent').innerHTML = html;
+  document.getElementById('generalModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('generalModal').classList.remove('open');
+}
+
+function closeGeneralModal(e) {
+  if (e.target.id === 'generalModal') closeModal();
 }
 
 function openThumbnailVideo(el) {

@@ -1198,6 +1198,39 @@ footer {
 .faq-q { font-weight: 600; font-size: .9rem; color: var(--gray-800); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
 .faq-a { font-size: .87rem; color: var(--gray-600); line-height: 1.7; }
 .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 22px; }
+
+/* Group Modal Styles */
+.group-bookings { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+.status-item { display: flex; align-items: center; padding: 10px; border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 8px; }
+.status-icon { font-size: 1.2rem; margin-right: 12px; }
+.status-text { flex: 1; font-size: .9rem; }
+.status-date { font-size: .8rem; color: var(--gray-500); }
+.group-members { margin-top: 20px; }
+.member-item { padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: .9rem; }
+
+.coordinator-tools { margin: 20px 0; }
+.tool-section { margin-bottom: 24px; }
+.tool-section h4 { color: var(--green-dark); margin-bottom: 12px; font-size: 1rem; }
+.tool-section .btn { margin-right: 8px; margin-bottom: 8px; }
+.progress-bar { width: 100%; height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden; margin: 8px 0; }
+.progress-fill { height: 100%; background: var(--green); transition: width 0.3s; }
+
+.discounts-list { margin: 20px 0; }
+.discount-item { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+.discount-item h4 { color: var(--green-dark); margin-bottom: 6px; }
+.discount-item p { font-size: .9rem; color: var(--gray-600); margin-bottom: 8px; }
+
+.payment-tools { margin: 20px 0; }
+.split-option { margin: 8px 0; }
+.split-option input { margin-right: 8px; }
+.method-item { padding: 6px 0; font-size: .9rem; }
+
+.policies-list { margin: 20px 0; }
+.policy-item { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+.policy-item h4 { color: var(--green-dark); margin-bottom: 6px; }
+.policy-item p { font-size: .9rem; color: var(--gray-600); margin-bottom: 8px; }
+
+.comparison-tools { margin: 20px 0; }
 .deal-card { position: relative; border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
 .deal-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .deal-badge { position: absolute; top: 14px; left: 14px; z-index: 2; }
