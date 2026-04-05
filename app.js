@@ -1185,46 +1185,52 @@ function renderPackages(list) {
 
 function renderIndividualPackages(dest, budget = Infinity) {
   let list = PACKAGES.filter(p => p.duration <= 10); // Shorter trips for individuals
-  if (dest) {
-    list = list.filter(p =>
-      p.dest.toLowerCase().includes(dest) ||
-      p.region.toLowerCase().includes(dest) ||
-      p.title.toLowerCase().includes(dest)
-    );
-  }
+  const relatedLocations = getRelatedHotelLocations(dest);
+  if (dest) list = list.filter(p => packageMatchesSearch(p, dest, relatedLocations));
   list = list.filter(p => p.price <= budget);
   const grid = document.getElementById('individualGrid');
-  if (grid) grid.innerHTML = list.map(pkgCard).join('');
+  if (grid) {
+    if (list.length === 0) {
+      renderEmptyState(grid, 'No packages match your current search. Try a broader term or higher budget.');
+    } else {
+      grid.innerHTML = list.map(pkgCard).join('');
+    }
+  }
+  renderTravelerDestinations('individualHotelGrid', dest, budget);
 }
 
 function renderFamilyPackages(dest, budget = Infinity) {
   let list = PACKAGES.filter(p => p.duration <= 14); // Family-friendly durations
-  if (dest) {
-    list = list.filter(p =>
-      p.dest.toLowerCase().includes(dest) ||
-      p.region.toLowerCase().includes(dest) ||
-      p.title.toLowerCase().includes(dest)
-    );
-  }
+  const relatedLocations = getRelatedHotelLocations(dest);
+  if (dest) list = list.filter(p => packageMatchesSearch(p, dest, relatedLocations));
   list = list.filter(p => p.price <= budget);
   // Mark packages as family-friendly
   list = list.map(pkg => ({ ...pkg, familyFriendly: true, childDiscount: '20% off for children under 12' }));
   const grid = document.getElementById('familyGrid');
-  if (grid) grid.innerHTML = list.map(pkg => pkgCard(pkg, true)).join(''); // Pass true for family mode
+  if (grid) {
+    if (list.length === 0) {
+      renderEmptyState(grid, 'No family packages match your current search. Try a broader term or higher budget.');
+    } else {
+      grid.innerHTML = list.map(pkg => pkgCard(pkg, true)).join('');
+    }
+  }
+  renderTravelerDestinations('familyHotelGrid', dest, budget);
 }
 
 function renderGroupPackages(dest, budget = Infinity) {
   let list = [...PACKAGES];
-  if (dest) {
-    list = list.filter(p =>
-      p.dest.toLowerCase().includes(dest) ||
-      p.region.toLowerCase().includes(dest) ||
-      p.title.toLowerCase().includes(dest)
-    );
-  }
+  const relatedLocations = getRelatedHotelLocations(dest);
+  if (dest) list = list.filter(p => packageMatchesSearch(p, dest, relatedLocations));
   list = list.filter(p => p.price <= budget);
   const grid = document.getElementById('groupGrid');
-  if (grid) grid.innerHTML = list.map(pkg => pkgCard(pkg, false, true)).join('');
+  if (grid) {
+    if (list.length === 0) {
+      renderEmptyState(grid, 'No group packages match your current search. Try a broader term or higher budget.');
+    } else {
+      grid.innerHTML = list.map(pkg => pkgCard(pkg, false, true)).join('');
+    }
+  }
+  renderTravelerDestinations('groupHotelGrid', dest, budget);
 }
 
 function pkgCard(pkg, familyMode = false, groupMode = false) {
@@ -1433,8 +1439,108 @@ function filterByDest(keyword) {
   }
 }
 
+function normalizeSearchTerm(value) {
+  return (value || '').toLowerCase().trim();
+}
+
+function renderEmptyState(target, message) {
+  if (!target) return;
+  target.innerHTML = `
+    <div class="empty-state" style="grid-column:1/-1">
+      <div class="es-icon">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      </div>
+      <p>${message}</p>
+    </div>`;
+}
+
+function setupHomeSearch() {
+  const searchInput = document.getElementById('searchDest');
+
+  if (searchInput && !searchInput.dataset.searchBound) {
+    searchInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        doSearch();
+      }
+    });
+    searchInput.dataset.searchBound = 'true';
+  }
+}
+
+function packageMatchesSearch(pkg, term, extraTerms = []) {
+  if (!term && extraTerms.length === 0) return true;
+
+  const searchableValues = [
+    pkg.dest,
+    pkg.region,
+    pkg.title,
+    pkg.desc,
+    ...(pkg.highlights || []),
+    ...(pkg.includes || []),
+    ...((pkg.itinerary || []).flatMap(stop => [stop.title, stop.desc]))
+  ]
+    .filter(Boolean)
+    .map(normalizeSearchTerm);
+
+  const termsToMatch = [term, ...extraTerms]
+    .map(normalizeSearchTerm)
+    .filter(Boolean);
+
+  return termsToMatch.some(searchTerm =>
+    searchableValues.some(value => value.includes(searchTerm))
+  );
+}
+
+function getRelatedHotelLocations(term) {
+  if (!term) return [];
+
+  return [...new Set(
+    HOTELS
+      .filter(hotel => {
+        const hotelName = normalizeSearchTerm(hotel.name);
+        const hotelLocation = normalizeSearchTerm(hotel.location);
+        return hotelName.includes(term) || hotelLocation.includes(term);
+      })
+      .map(hotel => hotel.location)
+      .filter(Boolean)
+  )];
+}
+
+function hotelMatchesSearch(hotel, term) {
+  if (!term) return true;
+
+  const searchableValues = [
+    hotel.name,
+    hotel.location,
+    hotel.category,
+    hotel.eventName,
+    ...(hotel.amenities || [])
+  ]
+    .filter(Boolean)
+    .map(normalizeSearchTerm);
+
+  return searchableValues.some(value => value.includes(term));
+}
+
+function renderTravelerDestinations(gridId, dest, budget = Infinity) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+
+  let list = [...HOTELS];
+  if (dest) list = list.filter(hotel => hotelMatchesSearch(hotel, dest));
+  list = list.filter(hotel => hotel.discountedPrice * 100 <= budget);
+
+  if (list.length === 0) {
+    renderEmptyState(grid, 'No destinations match your current search. Try a broader term or higher budget.');
+    return;
+  }
+
+  grid.innerHTML = list.map(hotelCard).join('');
+}
+
 function doSearch() {
-  const dest = (document.getElementById('searchDest').value || '').toLowerCase().trim();
+  const dest = normalizeSearchTerm(document.getElementById('searchDest').value);
   const travelers = parseInt(document.getElementById('searchNum').value) || 1;
   const budget = parseFloat(document.getElementById('searchBudget').value) || Infinity;
   selectedTravelers = travelers;
@@ -3476,6 +3582,7 @@ function updateCancellationPolicy() {
 
   // Render home featured
   renderFeatured();
+  setupHomeSearch();
 
   // Keyboard nav for logo
   document.querySelector('.logo').addEventListener('keydown', e => {
