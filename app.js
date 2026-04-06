@@ -1348,7 +1348,7 @@ function renderIndividualPackages(dest, budget = Infinity) {
     if (list.length === 0) {
       renderEmptyState(grid, 'No packages match your current search. Try a broader term or higher budget.');
     } else {
-      grid.innerHTML = list.map(pkg => pkgCard(pkg, 'Individual')).join('');
+      grid.innerHTML = list.map(pkg => pkgCard(pkg, '🙎‍♀️ Individual')).join('');
     }
   }
   renderTravelerDestinations('individualHotelGrid', dest, budget);
@@ -1366,7 +1366,7 @@ function renderFamilyPackages(dest, budget = Infinity) {
     if (list.length === 0) {
       renderEmptyState(grid, 'No family packages match your current search. Try a broader term or higher budget.');
     } else {
-      grid.innerHTML = list.map(pkg => pkgCard(pkg, 'Family', true)).join('');
+      grid.innerHTML = list.map(pkg => pkgCard(pkg, '👨‍👩‍👧‍👦 Family', true)).join('');
     }
   }
   renderTravelerDestinations('familyHotelGrid', dest, budget);
@@ -1382,7 +1382,7 @@ function renderGroupPackages(dest, budget = Infinity) {
     if (list.length === 0) {
       renderEmptyState(grid, 'No group packages match your current search. Try a broader term or higher budget.');
     } else {
-      grid.innerHTML = list.map(pkg => pkgCard(pkg, 'Group', false, true)).join('');
+      grid.innerHTML = list.map(pkg => pkgCard(pkg, '👫🏻 Group', false, true)).join('');
     }
   }
   renderTravelerDestinations('groupHotelGrid', dest, budget);
